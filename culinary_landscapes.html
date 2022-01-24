@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163585861-3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163585861-3');
+    </script>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Culinary landscapes</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
+</head>
+  
+<body>
+  
+  <section id="culinary_landscapes">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Culinary landscapes</h2>
+                <hr class="primary text-center">
+                <p class="text-faded-main-dark">How is the restaurant landscape spread across countries in Europe? What are dominant cuisines?</p>  
+                <p class="text-faded-main-dark">These are the 2 key questions that have influenced my work. To answer them, I web-scrape information from all restaurants that are listed on TripAdvisor as of Mai 2020. I start by identifying the geocoded location and then filter the various kitchen styles. TripAdvisor lists up to three kitchen styles per restaurant. I consider the first kitchen style listed as the principal style of the restaurant. If the first listed kitchen style does not refer to a country specific kitchen, I take the 2nd then 3rd listed instead. For example, if the first kitchen style mentioned is ‘Swiss’, I define the restaurant’s cuisine as ‘Swiss’. However, if the first mentioned kitchen style is ‘Asian’, I consider the second kitchen style. If the second kitchen style meets the country-specific cooking criteria, i.e. ‘Thai’, I define the restaurant’s style as ‘Thai’. Otherwise, I consider the third mentioned kitchen style. If no country specific tag is mentioned, I define the kitchen as ‘Other’.</p>
+                <p style="margin-bottom:3cm;"></p>
+                <h3 class="section-heading">Europe</h3>
+                <hr class="primary text-center">
+                  <div class="container loading" style="margin-left:-225px;">
+                    <input type="checkbox" id="zoomCheck">
+                      <label for="zoomCheck">
+                        <img src="https://luccalino.github.io/img/country_plots/europe.png" width="741" height="444.6">
+                      </label>
+                   </div>
+                <p style="margin-bottom:3cm;"></p>
+                <h3 class="section-heading">Switzerland</h3>
+                <hr class="primary text-center">
+              <p class="text-center"><a href="https://luccalino.github.io/interactive_visualization/index.html" target="_blank"><i><img src="img/logo/paint-selection-svgrepo-com.svg" style="cursor:pointer; height:0.5cm; weight: 0.5cm;"></i></a> Click to see the graph interactively. Zoom or click the legend for a selection. Loading takes a sec.</p>
+                <!--<p class="text-center">Click <a href='https://luccalino.github.io/interactive_visualization/index.html' target="_blank"><i>here</i></a> to access the graph interactively. Hover, zoom or click the legend for a selection.</p> -->
+                  <div class="container loading" style="margin-left:-225px;">
+                    <input type="checkbox" id="zoomCheck6">
+                      <label for="zoomCheck6">
+                        <img src="https://luccalino.github.io/img/country_plots/schweiz.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+                <p class="text-faded-main-dark">The Swiss culinary landscape is highly clustered. Yet, the Swiss data has identified that Italian cuisine is the most dominant kitchen style within restaurants in Switzerland. 9’937 (or 38.6%) of all restaurants in Switzerland serve Italian-influenced food. The highest density of Italian restaurants are located in the canton of Ticino. Yet, Italian restaurants are found throughout the country, particularly accumulating in larger cities.</p>
+                <p class="text-faded-main-dark">Switzerland’s second most popular restaurant kitchen style found is Swiss with 6’626 restaurants which are predominately located in the Alpine region and the Mittelland.</p>
+                <p class="text-faded-main-dark">French restaurants (2’781) are the third largest group. Their dominance in the French-speaking part of Switzerland is impressive. However, outside of the French-speaking region, restaurants that serve French food are rare. An interesting case marks the canton of Valais where the language border (‘Röstigraben’) is impressively present.</p>
+                <p style="margin-bottom:3cm;"></p>
+    
+                <h3 class="section-heading">Italy</h3>
+                <hr class="primary text-center"> 
+                    <div class="container loading" style="margin-left:-225px;">      
+                      <input type="checkbox" id="zoomCheck7">
+                      <label for="zoomCheck7">
+                        <img src="https://luccalino.github.io/img/country_plots/italia.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+                <p style="margin-bottom:3cm;"></p>
+
+                <h3 class="section-heading">France</h3>
+                <hr class="primary text-center">
+                    <div class="container loading" style="margin-left:-225px;">
+                      <input type="checkbox" id="zoomCheck8">
+                      <label for="zoomCheck8">
+                        <img src="https://luccalino.github.io/img/country_plots/france.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+               <p style="margin-bottom:3cm;"></p>
+
+                <h3 class="section-heading">Germany</h3>
+                <hr class="primary text-center">
+                   <div class="container loading" style="margin-left:-225px;">
+                      <input type="checkbox" id="zoomCheck9">
+                      <label for="zoomCheck9">
+                        <img src="https://luccalino.github.io/img/country_plots/germany.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+               <p style="margin-bottom:3cm;"></p>
+
+                <h3 class="section-heading">Austria</h3>
+                <hr class="primary text-center">
+                   <div class="container loading" style="margin-left:-225px;">
+                      <input type="checkbox" id="zoomCheck10">
+                      <label for="zoomCheck10">
+                        <img src="https://luccalino.github.io/img/country_plots/austria.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+              <p style="margin-bottom:3cm;"></p>
+
+                <h3 class="section-heading">Spain</h3>
+                <hr class="primary text-center">
+                   <div class="container loading" style="margin-left:-225px;">
+                      <input type="checkbox" id="zoomCheck11">
+                      <label for="zoomCheck11">
+                        <img src="https://luccalino.github.io/img/country_plots/spain.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+              <p style="margin-bottom:3cm;"></p>
+
+                <h3 class="section-heading">Portugal</h3>
+                <hr class="primary text-center">
+                   <div class="container loading" style="margin-left:-225px;">
+                      <input type="checkbox" id="zoomCheck12">
+                      <label for="zoomCheck12">
+                        <img src="https://luccalino.github.io/img/country_plots/portugal.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+              <p style="margin-bottom:3cm;"></p>
+
+                <h3 class="section-heading">The Netherlands</h3>
+                <hr class="primary text-center">
+                   <div class="container loading" style="margin-left:-225px;">
+                      <input type="checkbox" id="zoomCheck13">
+                      <label for="zoomCheck13">
+                        <img src="https://luccalino.github.io/img/country_plots/netherlands.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+              <p style="margin-bottom:3cm;"></p>
+
+                <h3 class="section-heading">Belgium</h3>
+                <hr class="primary text-center">
+                   <div class="container loading" style="margin-left:-225px;">
+                      <input type="checkbox" id="zoomCheck14">
+                      <label for="zoomCheck14">
+                        <img src="https://luccalino.github.io/img/country_plots/belgium.jpg" width="741" height="444.6">
+                      </label>
+                   </div>
+              <p style="margin-bottom:3cm;"></p>
+            </div>
+        </div>
+    </div>     
+
+  <div class="col-lg-12 text-center">
+    <h2 class="section-heading"></h2>
+      <p></p>
+      <a href="../#portfolio" class="btn btn-primary btn-xl page-scroll">Back</a>
+  </div>
+
+</section>
+                                                                                
+</body>
+</html>

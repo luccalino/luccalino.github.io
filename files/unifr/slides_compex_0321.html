@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Lucca Zachmann">
+  <title>Computergestütztes Experimentieren</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/night.css" id="theme">
+  <style type='text/css'>
+  /*
+  #4d7e65 green
+  #b5533c red
+
+  ## green {data-background=#4d7e65}
+
+  ## blue {data-background=#3c70b5}
+
+  ## red {data-background=#b5533c}
+
+   */
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  .reveal {
+      font-size: 150%; 
+  }
+
+  .reveal .title {
+      font-size: 260%; 
+  }
+
+  .subtitle{
+      font-size: 200%;
+      color: #e7ad52;
+      margin-bottom: +50px;
+
+  }
+  p.author,
+  p.date{
+      margin-top: -20px;
+  }
+
+  .reveal h2 {
+      margin-bottom: +50px;
+  }
+
+  .green {
+      color :   #009900;
+      font-weight: bold;
+      font-size: 200%;
+  }
+
+  .brown {
+      color :   #C6930A;
+      font-weight: bold;
+      font-size: 150%;
+  }
+
+  .coffee {
+      color :   #CC9900;
+      font-weight: bold;
+      font-size: 200%;
+  }
+
+  .google {
+      color :   #000000;
+      position: absolute;
+      top: 260px;
+      left: 10px;
+      font-size: 90%;
+  }
+
+  .lunch {
+      color :   #FF0000;
+      font-weight: bold;
+      font-size: 200%;
+  }
+
+  .reveal table {
+      font-size: 80%;
+  }
+
+  .border iframe {
+      border: none;
+      width: 2500px!important;
+      height: 680px;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important; 
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 0;
+      display:block; /* Add this */
+      max-width: 100%;
+  }
+
+  ol li {
+    line-height:2em;
+  }
+
+  ul li {
+    line-height:2em;
+  }
+
+  ul li li {
+
+   line-height:1.3em;
+   list-style-type: None;
+   font-style: italic;
+   font-size: 90%;
+   font-family: Georgia;
+  }
+
+  hr {
+      color: white;
+  }
+
+  /* .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6 {
+      word-wrap: normal;
+      -webkit-hyphens: manual;
+      -moz-hyphens: manual;
+      hyphens: manual;
+  } */
+
+  div.references{
+      font-size: 75%
+  }
+
+  .reveal .slide-number {
+    font-size: 18pt;
+    color: #ffffff; }
+
+  .emoji {
+      font-size: 150%
+  }
+
+  .reveal blockquote{
+      /*
+      border-left: 5px solid #428bca;
+      color: #428bca;
+      border-left: 4px solid #428bca;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border-right: 4px solid #428bca;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+
+
+      background-color: #E6E6E6;
+      color: #000000;
+       background-color: #d2f8d2; */
+  }
+
+  .reveal blockquote{
+      position: static;
+      text-align: center;
+      border-style: none;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.0);
+      background: inherit;
+      font-family: Georgia;
+      font-size: 1.4em;
+      width:90%;
+      margin:0px auto;
+      padding: 1em
+      font-style:italic;
+
+  }
+
+
+
+
+  .reveal blockquote cite{
+      text-align: right;
+      font-style: normal;
+      font-size: 0.75em;
+      font-weight: bold;
+      margin-top:1em;
+  }
+
+  /*********************************************
+  * GLOBAL STYLES
+  *********************************************/
+
+  .reveal-viewport {
+      background: #f7f6f7;
+      background-color: #f7f6f7;
+    }
+
+  .reveal {
+     /* font-size: 2.4em; */
+     font-weight: normal;
+     color: #1d1e1f;
+  }
+
+  .reveal ::selection {
+     color: #f7f6f7;
+     background: #588da8;
+     text-shadow: none;
+  }
+
+  .reveal ::-moz-selection {
+     color: #f7f6f7;
+     background: #588da8;
+     text-shadow: none;
+  }
+
+  .reveal ::marker {
+      color: #588da8;
+  }
+  section.has-dark-background ::marker {
+      color: white;
+  }
+
+  .reveal .controls {
+      font-size: 8px;
+      bottom: 16px;
+      right: 2px;
+      color: #588da8;
+  }
+
+  .reveal .progress {
+      color: #588da8;
+  }
+
+  .reveal .slide-number {
+      right: 18px;
+      bottom: 4px;
+      font-size: 14px;
+      background-color: transparent;
+      color: #1d1e1f;
+  }
+
+  /*********************************************
+  * FULL SCREEN SLIDES
+  *********************************************/
+
+  .reveal section[data-background*="images"] {
+      /* background-color: rgba(00, 00, 00, .2); */
+      padding: 3em;
+      width: 80% !important;
+      /* left: 10%; */
+      margin: auto;
+      /* border-bottom: 30px solid orange; */
+  }
+  .reveal h2[data-background*="images"] {
+      color: white;
+  }
+
+  .reveal-viewport {
+      background: #f7f6f7;
+      background-color: #f7f6f7;
+    }
+
+  /*********************************************
+  * HEADERS
+  *********************************************/
+
+  h1.title {
+      font-size: 2em;
+      font-weight: bold;
+  }
+
+  .subtitle{
+      font-size: 1.5em;
+      padding-top: 1em;
+      padding-bottom: 2em;
+      color: #25384F;
+  }
+
+  p.author,
+  p.date,
+  .institute{
+      text-align: left;
+      font-size: 0.7em;
+      margin-top: -0.7em;
+      margin-left: 19%;
+  }
+
+  .institute{
+      font-size: 0.5em
+  }
+
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6 {
+      color: #4b729e;
+  }
+
+  .reveal h2 {
+      margin-bottom: +50px;
+  }
+
+  .reveal h3 {
+      font-size: 1.3em;
+  }
+
+  /*********************************************
+  * LISTS
+  *********************************************/
+
+  ol li,
+  ul li {
+    margin-top: 0.6em;
+  }
+
+  ol li li,
+  ul li li {
+   margin-top: 0.2em;
+   list-style-type: None;
+   font-style: italic;
+   font-size: 0.8em;
+   font-family: Georgia;
+  }
+
+
+  /*********************************************
+  * OTHER TEXT
+  *********************************************/
+
+  section section:not(.has-dark-background) strong,
+  section section:not(.has-dark-background) b {
+    color: #729E2A;
+  }
+
+  .reveal a {
+      color: #588da8
+  }
+
+  .reveal a:hover {
+    color: #9E4B72;
+    text-shadow: none;
+    border: none;
+  }
+
+  .reveal section.has-dark-background a {
+      color: white;
+      text-decoration: underline;
+  }
+
+  .reveal figure figcaption {
+    font-style: italic;
+    font-size: 75%; }
+
+  section:not(.has-dark-background) span.citation{
+      font-size: 60%;
+      font-style: italic;
+      color: gray;
+      vertical-align: top;
+  }
+
+  .reveal pre {
+      margin-top: 3em;
+  }
+
+  .reveal pre code {
+      font-size: 2em;
+      padding: 1.5em;
+  }
+
+
+  .reveal table {
+      font-size: 0.8em;
+  }
+
+  .emoji {
+      font-size: 1.3em
+  }
+
+
+
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Computergestütztes Experimentieren</h1>
+  <p class="subtitle">Teil 2: Programmieren mit PsychoPy <br><br></p>
+  <p class="author">Lucca Zachmann</p>
+  <p class="date">Zoom, 12. März 2021</p>
+</section>
+
+<section class="slide level2">
+
+<h3 id="physically-distant-still-connected">Physically distant, still connected</h3>
+</section>
+<section id="section" class="slide level2" data-background-iframe="images/mymap_21.html">
+<h2 data-background-iframe="images/mymap_21.html"></h2>
+</section>
+<section class="slide level2">
+
+</section>
+<section>
+<section id="administratives" class="title-slide slide level1">
+<h1>Administratives</h1>
+
+</section>
+<section class="slide level2">
+
+<h3 id="join-the-fun">Join the fun <span class="emoji" data-emoji="iphone">📱</span></h3>
+</section>
+<section class="slide level2">
+
+<h3 id="hat-die-installation-geklappt">Hat die Installation geklappt? <span class="emoji" data-emoji="iphone">📱</span></h3>
+<p>Mit Code <strong>9114 8062</strong> über: <a href="https://www.menti.com">https://www.menti.com</a></p>
+<p>Oder QR-Code:</p>
+<p><img data-src="images/qr_admin.png" class="center" style="width:10.0%" /></p>
+</section>
+<section id="section-1" class="slide level2" data-background-iframe="https://www.mentimeter.com/embed/029e5618084da9a9f2a0309c13b2c547/0183b029b85d">
+<h2 data-background-iframe="https://www.mentimeter.com/embed/029e5618084da9a9f2a0309c13b2c547/0183b029b85d"></h2>
+</section>
+<section class="slide level2">
+
+<h3 id="seminar-struktur">Seminar Struktur</h3>
+<ol type="1">
+<li>Teil: Online Fragebögen <span class="emoji" data-emoji="heavy_check_mark">✔️</span></li>
+<li>Teil: Programmieren mit PsychoPy (live!)</li>
+<li>Teil: Datenauswertungen (26. März / 16. April)</li>
+</ol>
+<aside class="notes">
+<p>tbd</p>
+</aside>
+</section>
+<section id="direction-of-travel" class="slide level2" data-background="images/direction_of_travel.jpg">
+<h2 data-background="images/direction_of_travel.jpg"><a href="https://run.pavlovia.org/demos/stroop/html/"><span class="brown">Direction of travel</span></a></h2>
+</section>
+<section id="reiseplan" class="slide level2">
+<h2>Reiseplan</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Block</th>
+<th>Zeit</th>
+<th>Station</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>9.15–10.00</td>
+<td>Admin/Einführung, Experimentelles Design</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>10.00–10.15</td>
+<td><span class="emoji" data-emoji="coffee">☕</span></td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td>10.15–12.00</td>
+<td>Python Basics, Demonstration</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>12.00–13.00</td>
+<td><span class="emoji" data-emoji="spaghetti">🍝</span></td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>13.00–17.00</td>
+<td>Gruppenarbeit</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="webinar-ablauf" class="slide level2">
+<h2>Webinar Ablauf</h2>
+<ul>
+<li>Vormittag: Tutorial, dringende Fragen direkt stellen.</li>
+<li>Nachmittag: Individuelles Arbeiten/Ausprobieren, jede Menge Zeit individuelle Fragen zu beantworten</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="leistungsüberprüfung">Leistungsüberprüfung</h3>
+<ol type="1">
+<li><p>Datenabgabe (individuell)</p></li>
+<li><p>Programmierung eines Projekts (Kleingruppen von 3 Personen: <a href="https://moodle.unifr.ch/mod/resource/view.php?id=865019ß">click for link</a>)</p></li>
+<li><p>Mini-Essay (individuell)</p></li>
+</ol>
+<p>-&gt; Siehe <em>06 Leistungsüberprüfung</em> auf Moodle</p>
+</section>
+<section class="slide level2">
+
+<h3 id="behalten-wir-die-gruppen-bei">Behalten wir die Gruppen bei? <span class="emoji" data-emoji="iphone">📱</span></h3>
+<p>Mit Code <strong>9114 8062</strong> über: <a href="https://www.menti.com">https://www.menti.com</a></p>
+<p>Oder QR-Code:</p>
+<p><img data-src="images/qr_admin.png" class="center" style="width:10.0%" /></p>
+</section>
+<section id="section-2" class="slide level2" data-background-iframe="https://www.mentimeter.com/embed/029e5618084da9a9f2a0309c13b2c547/0183b029b85d">
+<h2 data-background-iframe="https://www.mentimeter.com/embed/029e5618084da9a9f2a0309c13b2c547/0183b029b85d"></h2>
+</section>
+<section id="lets-get-started" class="slide level2" data-background="https://media.giphy.com/media/AOSwwqVjNZlDO/giphy.gif">
+<h2 data-background="https://media.giphy.com/media/AOSwwqVjNZlDO/giphy.gif"><span class="green">Let’s get started</span></h2>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="installation" class="title-slide slide level1">
+<h1>Installation</h1>
+
+</section>
+<section id="open-source-software" class="slide level2">
+<h2>Open-source software</h2>
+<p>«Standing on the shoulders of giants.»</p>
+<ul>
+<li>Kollaboration</li>
+<li>Teilen und wiederverwenden</li>
+<li><strong>Hilfreiche Gemeinschaft</strong></li>
+</ul>
+<aside class="notes">
+<p>Using the understanding gained by major thinkers who have gone before in order to make intellectual progress.</p>
+</aside>
+</section>
+<section id="section-3" class="slide level2">
+<h2><span class="emoji" data-emoji="four_leaf_clover">🍀</span></h2>
+<p>Installation/Einrichtung von Software ist oft schwieriger und schlechter dokumentiert als blosse Verwendung.</p>
+</section>
+<section id="macos-catalina-i" class="slide level2">
+<h2>macOS Catalina I</h2>
+<ol type="1">
+<li><p>Lade den 64-bit Command-line Installer für Python 3.7 herunter:</p>
+<p><a href="https://repo.anaconda.com/archive/Anaconda3-2020.11-MacOSX-x86_64.sh">https://repo.anaconda.com/archive/Anaconda3-2020.11-MacOSX-x86_64.sh</a></p></li>
+<li><p>Öffne den Terminal (CMD + Space).</p></li>
+<li><p>Kopiere folgendes in den Terminal und drücke ENTER:</p>
+<p><code>bash ~/Downloads/Anaconda3-2020.11-MacOSX-x86_64.sh</code></p></li>
+</ol>
+</section>
+<section id="macos-catalina-ii" class="slide level2">
+<h2>macOS Catalina II</h2>
+<ol start="4" type="1">
+<li><p>Folge der Installation.</p></li>
+<li><p><span class="emoji" data-emoji="warning">⚠️</span> WICHTIG: Auf die Frage ‘Do you wish the installer to initialize Anaconda3 by running conda init?’ sagen wir <strong>no</strong>!</p></li>
+<li><p>Aktiviere Anaconda:</p>
+<p><code>source /Users/&lt;Dein Benutzername&gt;/anaconda3/bin/activate</code></p>
+<p>(Bemerke: Dein Benutzername kannst du mit <code>whoami</code> erfragen)</p></li>
+</ol>
+</section>
+<section id="macos-catalina-iii" class="slide level2">
+<h2>macOS Catalina III</h2>
+<ol start="7" type="1">
+<li><p>Wir initialisieren die Änderung mit:</p>
+<p><code>conda init zsh</code></p></li>
+<li><p>Schliesse den Terminal. Öffnen ihn aber erneut und teste die Installation:</p>
+<p><code>conda list</code></p></li>
+<li><p>Siehst du eine Liste der Module? <span class="emoji" data-emoji="sparkles">✨</span></p></li>
+</ol>
+</section>
+<section id="windows-10" class="slide level2">
+<h2>Windows 10</h2>
+<ol type="1">
+<li><p>Lade den 64-bit graphical installer for Python 3.7 für Windows herunter:</p>
+<p><a href="https://repo.anaconda.com/archive/Anaconda3-2020.11-Windows-x86_64.exe">https://repo.anaconda.com/archive/Anaconda3-2020.11-Windows-x86_64.exe</a></p></li>
+<li><p>Führe das heruntergeladene File aus um den Installationsprozess zu starten.</p></li>
+<li><p><span class="emoji" data-emoji="warning">⚠️</span> WICHTIG: Unter Advanced Options markiere das Kästchen ‘Add Anaconda to my PATH environment variable’.</p></li>
+<li><p>Öffne einen Anaconda Terminal und teste die Installation mit:</p>
+<p><code>conda list</code></p></li>
+</ol>
+</section>
+<section id="packagesmodules-psychopy-etc." class="slide level2">
+<h2>Packages/modules (PsychoPy, etc.)</h2>
+<ol type="1">
+<li><p>Python Package Index (PyPI): <a href="https://www.youtube.com/watch?v=zB8pbUW5n1g">“Cheese Shop”</a></p>
+<p>Via Terminal (macOS):</p>
+<p><code>/Users/&lt;Username&gt;/anaconda3/bin/python -m pip install &lt;package name&gt;</code></p>
+<p>Via Anaconda Promt (win10):</p>
+<p><code>pip install &lt;package name&gt;</code></p></li>
+<li><p>Anaconda Distribution:</p>
+<p><code>conda install &lt;package name&gt;</code></p></li>
+</ol>
+<aside class="notes">
+<p>similar to app stores</p>
+</aside>
+</section>
+<section id="last-step" class="slide level2">
+<h2>Last step <span class="emoji" data-emoji="round_pushpin">📍</span></h2>
+<ul>
+<li><p>Ist PsychoPy installiert?</p>
+<ul>
+<li>Im Terminal: <code>conda list</code></li>
+</ul></li>
+<li><p>Öffne Spyder (Editor, Entwicklungsumgebung (IDE))</p>
+<ol type="1">
+<li><p>Im Terminal (macOS) oder Anaconda Promt (win10): <code>spyder</code></p></li>
+<li><p>Über den Anaconda Navigator: Launch Spyder</p></li>
+</ol></li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="experiment-design" class="title-slide slide level1">
+<h1>Experiment Design</h1>
+
+</section>
+<section class="slide level2">
+
+<h3 id="computergestütztes-experimentieren">Computergestütztes Experimentieren</h3>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="pros">Pros</h4>
+<ul>
+<li>Komplexe und dynamische Aufgabenstrukturen</li>
+<li>Präzise Messung und Kontrolle von Variablen</li>
+<li>Automatisierung</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="cons">Cons</h4>
+<ul>
+<li>Unnatürlichkeit</li>
+<li>Abstraktion</li>
+<li>Protest votes</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="auf-was-musst-du-beim-experimentellen-design-achten">Auf was musst du beim experimentellen Design achten? <span class="emoji" data-emoji="iphone">📱</span></h3>
+<p>Notiere deine Stichworte auf Menti. <span class="emoji" data-emoji="pencil">📝</span></p>
+<p>Mit Code <strong>1243 1296</strong> via <a href="https://www.menti.com">https://www.menti.com</a></p>
+<p>Oder QR-Code:</p>
+<p><img data-src="images/qr_exp_design.png" class="center" style="width:10.0%" /></p>
+</section>
+<section id="section-4" class="slide level2" data-background-iframe="https://www.mentimeter.com/embed/75726318ab4c6ccbca888e8d7b457188/9fb6b5850435">
+<h2 data-background-iframe="https://www.mentimeter.com/embed/75726318ab4c6ccbca888e8d7b457188/9fb6b5850435"></h2>
+</section>
+<section class="slide level2">
+
+<h3 id="experimentelles-design">Experimentelles Design</h3>
+<ul>
+<li>Orientierung/Information des Teilnehmenden
+<ul>
+<li>Datenschutz</li>
+</ul></li>
+<li>(Versteckte) Hypothesen
+<ul>
+<li>Messung der relevanten Variablen, Neutralität</li>
+</ul></li>
+<li>Benutzerfreundlichkeit
+<ul>
+<li>Dauer, Klarheit, Komfort (Tasten)</li>
+</ul></li>
+<li>Sweets <span class="emoji" data-emoji="lollipop">🍭</span>
+<ul>
+<li>Erlebnis, Performance Feedback</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="brainstorming">Brainstorming</h3>
+<p>Was für Projektideen kommen dir spontan in den Sinn? <span class="emoji" data-emoji="iphone">📱</span></p>
+<p>Mit Code <strong>5200 6596</strong> via <a href="https://www.menti.com">https://www.menti.com</a></p>
+<p>Oder QR-Code:</p>
+<p><img data-src="images/qr_exp_design.png" class="center" style="width:10.0%" /></p>
+</section>
+<section id="section-5" class="slide level2" data-background-iframe="https://www.mentimeter.com/embed/75726318ab4c6ccbca888e8d7b457188/9fb6b5850435">
+<h2 data-background-iframe="https://www.mentimeter.com/embed/75726318ab4c6ccbca888e8d7b457188/9fb6b5850435"></h2>
+</section>
+<section id="section-6" class="slide level2" data-background="https://media.giphy.com/media/ZsbqQrUrzRtN6/giphy.gif">
+<h2 data-background="https://media.giphy.com/media/ZsbqQrUrzRtN6/giphy.gif"><span class="coffee">15’</span>                    </h2>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="python-basics" class="title-slide slide level1">
+<h1>Python Basics <span class="emoji" data-emoji="snake">🐍</span></h1>
+
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<p>Python ist eine objekt-orientierte general-purpose Programmiersprache.</p>
+<aside class="notes">
+<p>Für viele Anwendungsfälle/Problemstellungen einsetzbar. whereas R is a statistical programming language. Objekt: Ein Element, welches Funktionen, Methoden, Prozeduren, einen inneren Zustand, oder mehrere dieser Dinge besitzt.</p>
+</aside>
+</section>
+<section id="syntax-datentypen" class="slide level2">
+<h2>Syntax: Datentypen</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Verwendung</th>
+<th>Typ</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>String</td>
+<td>Text</td>
+<td>str</td>
+<td>“Hi!”</td>
+</tr>
+<tr class="even">
+<td>Integer, Float</td>
+<td>Zahlen</td>
+<td>int, float</td>
+<td>20, 4.5</td>
+</tr>
+<tr class="odd">
+<td>List</td>
+<td>Listen (ordered, mutable)</td>
+<td>list</td>
+<td>[“Good”, “Morning”, “Everybody”]</td>
+</tr>
+<tr class="even">
+<td>Boolean</td>
+<td>Wahrheitswerte</td>
+<td>bool</td>
+<td>True, False</td>
+</tr>
+<tr class="odd">
+<td><span>⋮</span></td>
+<td><span>⋮</span></td>
+<td><span>⋮</span></td>
+<td><span>⋮</span></td>
+</tr>
+<tr class="even">
+<td>Tuple</td>
+<td>Listen (ordered, inmutable)</td>
+<td>tuple</td>
+<td>(1, 2)</td>
+</tr>
+<tr class="odd">
+<td>Dictionary</td>
+<td>Listen (unordered, mutable)</td>
+<td>dict</td>
+<td>{“a”:1, “b”: 2, “c”: 3}</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>Lists sind veränderlich, tuple sind unveränderlich.</p>
+</aside>
+</section>
+<section id="syntax-datentyp-konversionen" class="slide level2">
+<h2>Syntax: Datentyp Konversionen</h2>
+<ul>
+<li>Ask for datatype: <code>type()</code></li>
+<li>Any data type to integer: <code>int()</code></li>
+<li>Integer to string: <code>str()</code></li>
+<li>etc.</li>
+</ul>
+</section>
+<section id="syntax-variablen" class="slide level2">
+<h2>Syntax: Variablen</h2>
+<ul>
+<li>Variablen kreieren:
+<ul>
+<li><code>x = 'On our way'</code></li>
+<li><code>y = 2</code></li>
+<li><code>z = "PsychoPy!"</code></li>
+</ul></li>
+<li>Variablen kombinieren:
+<ul>
+<li><code>str_combo = x + y + z</code></li>
+<li><code>int_combo = y + y</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="syntax" class="slide level2">
+<h2>Syntax: = / ==</h2>
+<ul>
+<li>Weise einer Variable einen Wert zu -&gt; =
+<ul>
+<li><code>x = 1</code></li>
+</ul></li>
+<li>Überprüfe, ob zwei Ausdrücke den gleichen Wert ergeben -&gt; ==
+<ul>
+<li><code>1 == 2</code></li>
+<li>-&gt; <code>False</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="syntax-kommentieren" class="slide level2">
+<h2>Syntax: Kommentieren</h2>
+<ul>
+<li><p>Zu oft unterschätzt<span class="emoji" data-emoji="bangbang">‼️</span></p></li>
+<li><p>Single line:</p>
+<ul>
+<li># Single line comment</li>
+</ul></li>
+<li><p>Multiple lines:</p>
+<ul>
+<li>""" [Comment</li>
+<li>over</li>
+<li>multiple</li>
+<li>lines] """</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="alles-klar-soweit-gibt-es-unklarheiten">Alles klar soweit? Gibt es Unklarheiten? <span class="emoji" data-emoji="iphone">📱</span></h3>
+<p>Stelle deine Fragen auf Menti.</p>
+<p>Mit Code <strong>5200 6596</strong> via <a href="https://www.menti.com">https://www.menti.com</a></p>
+<p>Oder QR-Code:</p>
+<p><img data-src="images/qr_python.png" class="center" style="width:10.0%" /></p>
+</section>
+<section id="section-8" class="slide level2" data-background-iframe="https://www.mentimeter.com/embed/958553e67355da7a73216c382b41a40c/6dd591178284">
+<h2 data-background-iframe="https://www.mentimeter.com/embed/958553e67355da7a73216c382b41a40c/6dd591178284"></h2>
+</section>
+<section id="syntax-funktionen-und-argumente" class="slide level2">
+<h2>Syntax: Funktionen und Argumente</h2>
+<ul>
+<li><p>Funktionen müssen installiert sein (via Terminal oder Anaconda Promt)</p></li>
+<li><p>Funktionen:</p>
+<ul>
+<li><code>import graph_tool</code> <span class="emoji" data-emoji="rage">😡</span></li>
+<li><code>import random</code></li>
+<li><code>import pandas as pd</code>
+<ul>
+<li><code>df = pd.DataFrame()</code></li>
+</ul></li>
+<li><code>from psychopy import visual</code>
+<ul>
+<li><code>win = visual.Window()</code></li>
+</ul></li>
+</ul></li>
+<li><p>Argumente:</p>
+<ul>
+<li><code>win = visual.Window(</code>
+<ul>
+<li><code>size = [600,600],</code></li>
+<li><code>color = [-1,-1,-1],</code></li>
+<li><code>units = 'pix')</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="syntax-einschlag" class="slide level2">
+<h2>Syntax: Einschlag</h2>
+<ul>
+<li>Indentation matters!</li>
+<li>Darstellung von Code Blöcken (z.B Loops, if statements, etc.)</li>
+<li>Mind. 1 Einzug und homogen innerhalb des Blocks</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<figure>
+<img data-src="images/einschlag_korrekt.png" class="center" style="width:100.0%" alt="✔️" /><figcaption aria-hidden="true"><span class="emoji" data-emoji="heavy_check_mark">✔️</span></figcaption>
+</figure>
+</div><div class="column" style="width:50%;">
+<figure>
+<img data-src="images/einschlag_falsch.png" class="center" style="width:100.0%" alt="❌" /><figcaption aria-hidden="true"><span class="emoji" data-emoji="x">❌</span></figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="syntax-iterations-und-conditionals" class="slide level2">
+<h2>Syntax: Iterations und conditionals</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="loops">Loops</h4>
+<p><img data-src="images/loop.png" class="center" style="width:70.0%" /></p>
+</div><div class="column" style="width:50%;">
+<h4 id="if-statements">if statements</h4>
+<p><img data-src="images/if.png" class="center" style="width:70.0%" /></p>
+</div>
+</div>
+</section>
+<section id="syntax-methoden" class="slide level2">
+<h2>Syntax: Methoden</h2>
+<ul>
+<li>Wir verwenden Methoden auf Objekte
+<ul>
+<li><code>msg = []</code></li>
+<li><code>msg.append('Corona, go away!')</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="quiz">Quiz <span class="emoji" data-emoji="iphone">📱</span></h3>
+<p>Mit Code <strong>5200 6596</strong> via <a href="https://www.menti.com">https://www.menti.com</a></p>
+<p>Oder QR-Code:</p>
+<p><img data-src="images/qr_python.png" class="center" style="width:10.0%" /></p>
+</section>
+<section id="section-9" class="slide level2" data-background-iframe="https://www.mentimeter.com/embed/958553e67355da7a73216c382b41a40c/6dd591178284">
+<h2 data-background-iframe="https://www.mentimeter.com/embed/958553e67355da7a73216c382b41a40c/6dd591178284"></h2>
+</section>
+<section id="nützliche-links" class="slide level2">
+<h2>Nützliche Links</h2>
+<ul>
+<li><a href="https://stackoverflow.com">https://stackoverflow.com</a></li>
+<li><a href="https://docs.python.org/3/tutorial/datastructures.html">https://docs.python.org/3/tutorial/datastructures.html</a></li>
+<li><a href="https://www.djmannion.net/psych_programming/index.html">https://www.djmannion.net/psych_programming/index.html</a></li>
+</ul>
+</section>
+<section id="learning-by-doing-doing-by-googling" class="slide level2" data-background="https://media.giphy.com/media/50QSOZk8nzoIw/giphy.gif">
+<h2 data-background="https://media.giphy.com/media/50QSOZk8nzoIw/giphy.gif"><span class="google">Learning by doing, doing by googling </span></h2>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="demonstration" class="title-slide slide level1">
+<h1>Demonstration</h1>
+
+</section>
+<section id="httpswww.kaggle.comciplabreal-and-fake-face-detection" class="slide level2">
+<h2><img data-src="images/samples.jpg" alt="((https://www.kaggle.com/ciplab/real-and-fake-face-detection))" /></h2>
+<p><a href="https://www.kaggle.com/ciplab/real-and-fake-face-detection">https://www.kaggle.com/ciplab/real-and-fake-face-detection</a></p>
+</section>
+<section id="section-10" class="slide level2">
+<h2><img data-src="images/filename_description.jpg" /></h2>
+</section>
+<section id="buon-appetito" class="slide level2" data-background="https://media.giphy.com/media/oFy0DysfL2nGG0W6Gr/giphy.gif">
+<h2 data-background="https://media.giphy.com/media/oFy0DysfL2nGG0W6Gr/giphy.gif"><span class="coffee" style="color:white;">Buon appetito!</span></h2>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="workshop" class="title-slide slide level1">
+<h1>Workshop</h1>
+
+</section>
+<section id="aufgaben" class="slide level2">
+<h2>Aufgaben</h2>
+<ul>
+<li><p>Alleine: Gehe selbständig durchs Skript und vergewissere dich, dass du verstehst was das Skript macht.</p></li>
+<li><p>Stelle deine Fragen per Troubleshooting Forum auf Moodle, per E-Mail oder Zoom-call.</p></li>
+<li><p>Als Gruppe in Breakout-Sessions: Diskutiert was für ein Projekt ihr programmieren wollt. Erstellt ein Konzept. Sucht allenfalls Daten und beginnt mit der Implementation.</p></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

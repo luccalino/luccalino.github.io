@@ -1,0 +1,18 @@
+# Site settings
+title: 
+email: lucca.zachmann[youknowwhat]gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "" # the base hostname & protocol for your site
+
+strava_username: "12340304"
+github_username: "luccalino"
+
+# Build settings
+markdown: kramdown
+
+# Analytics
+analytics:
+  provider               :  "google-universal" # false (default), "google", "google-universal", "custom"
+  google:
+    tracking_id          : #"UA-163585861-3"

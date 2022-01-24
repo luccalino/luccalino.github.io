@@ -1,0 +1,54 @@
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+       
+            <div id="quote"></div>
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            
+            <script>
+            $(function () {
+            count = 0;
+            wordsArray = ["Friend! ", "Visitor!", "Guest!"]; <!--"Cyclist!", , "Data lover!", "Runner!", "Culinarian!"-->
+            setInterval(function () {
+            count++;
+            $("#word").fadeOut(400, function () {
+            $(this).text(wordsArray[count % wordsArray.length]).fadeIn(400);
+            });
+            }, 2000);
+            });
+            </script>
+            
+            <!--
+            <script>
+            (function() {
+            var quotes = [
+            {
+            text: "Visitor"
+            },
+            {
+            text: "Guest"
+            },  
+            {
+            text: "Friend"
+            }, 
+            {
+            text: "Prospect",
+            }
+            ];
+            var quote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById("quote").innerHTML =
+            '<h1>Welcome, dear <a title="Info">' + quote.text + '</a>!</h1>';
+            })();
+            </script>
+            -->
+            
+            <h1 style="font-size: 28px;">Welcome, dear <div id="word" style="display:inline;vertical-align:top;">Friend!</div></h1>
+            
+            <hr style="border:3px solid $theme-primary;">
+            <p>Please find on my website materials of some of my recent projects.</p>
+            
+        </div>
+    </div>
+    <p style="position:absolute; bottom:0; right:0; margin-right: 20px; color: #1E2460; font-size: 12px;">&#169; 2022 LAZ. <a href="https://github.com/luccalino/luccalino.github.io">Source code.</a></p>
+</header>
