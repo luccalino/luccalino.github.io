@@ -32,20 +32,19 @@
     
             <script>
             new TypeIt("#myElement", {
-                speed: 1000
                     startDelay: 900
             })
-                .type("qel", {delay: 100})
+                .type("qel", {delay: 400})
                 .move(null, {to: 'START', instant: true, delay: 300})
-                .move(1, {delay: 200})
+                .move(1, {delay: 300})
                 .delete(1)
-                .type('W', {delay: 225})
-                .pause(200)
+                .type('W', {delay: 325})
+                .pause(400)
                 .move(null, {to: 'END'})
                 .type('come')
-                .pause(400)
+                .pause(600)
                 .type(', dear vistor')
-                .move(-3, {delay: 150})
+                .move(-3, {delay: 350})
                 .type('i')
                 .move(null, {to: 'END'})
                 .type('!')
@@ -53,13 +52,13 @@
                 .delete(1)
                 .delete(1)
                 .delete(1)
-                .delete(1, {delay: 800, instant: true})
+                .delete(1, {delay: 900, instant: true})
                 .delete(1)
                 .delete(1)
                 .delete(1)
-                .pause(400)
+                .pause(600)
                 .type('guest?')
-                .pause(100)
+                .pause(400)
                 .delete(1)
                 .type('!')
                 .delete(1)
@@ -68,7 +67,7 @@
                 .delete(1)
                 .delete(1)
                 .delete(1)
-                .pause(250)
+                .pause(700)
                 .type('friend!')
             .go();
             </script>
