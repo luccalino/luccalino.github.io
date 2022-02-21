@@ -25,7 +25,7 @@
         -->
 
             <!-- A root element for TypeIt to target. -->
-            <h1 style="font-size: 24px;" id="myElement"></h1>
+            <h1 id="myElement"></h1><!--style="font-size: 24px;" -->
 
             <!-- The script itself, loaded AFTER your root element. -->
             <script src="https://unpkg.com/typeit@8.2.0/dist/index.umd.js"></script>
@@ -42,7 +42,7 @@
                 .pause(200)
                 .move(null, {to: 'END'})
                 .type('come')
-                .pause(200)
+                .pause(400)
                 .type(', dear vistor')
                 .move(-3, {delay: 150})
                 .type('i')
@@ -59,7 +59,7 @@
                 .pause(400)
                 .type('guest?')
                 .pause(100)
-                .move(-1, {delay: 150})
+                .move(-2, {delay: 150})
                 .type('!')
                 .delete(1)
                 .delete(1)
