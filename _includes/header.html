@@ -4,12 +4,12 @@
        
             <div id="quote"></div>
             
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
             
             <script>
             $(function () {
             count = 0;
-            wordsArray = ["Friend! ", "Visitor!", "Guest!"]; <!--"Cyclist!", , "Data lover!", "Runner!", "Culinarian!"-->
+            wordsArray = ["Friend! ", "Visitor!", "Guest!"]; 
             setInterval(function () {
             count++;
             $("#word").fadeOut(400, function () {
@@ -19,35 +19,46 @@
             });
             </script>
             
-            <!--
-            <script>
-            (function() {
-            var quotes = [
-            {
-            text: "Visitor"
-            },
-            {
-            text: "Guest"
-            },  
-            {
-            text: "Friend"
-            }, 
-            {
-            text: "Prospect",
-            }
-            ];
-            var quote = quotes[Math.floor(Math.random() * quotes.length)];
-            document.getElementById("quote").innerHTML =
-            '<h1>Welcome, dear <a title="Info">' + quote.text + '</a>!</h1>';
-            })();
-            </script>
-            -->
-            
             <p></p>
             <h1 style="font-size: 28px;">Welcome, dear <div id="word" style="display:inline;vertical-align:top;">Friend!</div></h1>
             
             <hr style="border:3px solid $theme-primary;">
-            <p>Please find on my website materials of some of my recent projects.</p>
+            <p>Please find on my website materials of some of my recent projects.</p>-->
+
+            <script src="https://unpkg.com/typeit@8.2.0/dist/index.umd.js"></script>
+
+            <script type="text/javascript">
+                new TypeIt('#element', {
+  speed: 45
+})
+.type('The programers')
+.pause(300)
+.options({speed: 200})
+.delete(3)
+.options({speed: 45})
+.pause(300)
+.type('mer\'s wife sent him to teh sto.', { delay: 400})
+.move(-5, { delay: 200})
+.delete(2, { delay: 200})
+.type('he', { delay: 200})
+.move(null, {to: 'END'})
+.pause(500)
+.options({speed: 200})
+.delete(7)
+.type('he store.')
+.pause(500)
+.break()
+.options({speed: 45})
+.type('Her instructions were <em>"Buy butter. See if they have 10 eggs. If they do, buy ten.</em>"')
+.pause(1000)
+.break({ delay: 1000 })
+.type('He came back with ten packs of butter. ')
+.pause(1000)
+.type('Because they have eggs.')
+.go();
+            </script>
+
+<span id="element"> </h>
             
         </div>
     </div>
