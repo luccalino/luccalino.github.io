@@ -25,13 +25,14 @@
         -->
 
             <!-- A root element for TypeIt to target. -->
-            <h1 style="font-size: 28px;" id="myElement"></h1>
+            <h1 style="font-size: var(--ti-cursor-font-size, 28px;)" id="myElement"></h1>
 
             <!-- The script itself, loaded AFTER your root element. -->
             <script src="https://unpkg.com/typeit@8.2.0/dist/index.umd.js"></script>
     
             <script>
             new TypeIt("#myElement", {
+                    speed: 150
                     startDelay: 900
             })
                 .type("eel", {delay: 100})
@@ -54,8 +55,8 @@
                 .delete(1)
                 .delete(1)
                 .delete(1)
-                .pause(200)
-                .type('guest!')
+                .pause(400)
+                .type('guest!', {delay: 225})
                 .delete(1)
                 .delete(1)
                 .delete(1)
