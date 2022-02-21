@@ -99,7 +99,7 @@ aside {
 // Navigation
 
 .navbar-default {
-    background-color: $theme-about; //transparent; //white;
+    background-color: white;
     border-color: rgba($theme-dark, .5);
     @include sans-serif-font;
     @include transition-all;
@@ -107,7 +107,7 @@ aside {
         color: $theme-primary;
         @include sans-serif-font;
         font-weight: 700;
-        text-transform: none; //uppercase;
+        text-transform: uppercase;
         &:hover,
         &:focus {
             color: darken($theme-primary, 10%);
@@ -117,7 +117,7 @@ aside {
         > li {
             > a,
             > a:focus {
-                text-transform: none; //uppercase;
+                text-transform: uppercase;
                 font-weight: 700;
                 font-size: 13px;
                 color: $theme-dark;
@@ -197,7 +197,7 @@ header {
                 font-weight: 600;
                 font-size: 22px;
                 --ti-cursor-font-size: 22px;
-                text-transform: uppercase;
+                text-transform: none; //uppercase;
                 margin-top: 0;
                 margin-bottom: 0;
                 color: $theme-primary; // white; // added
