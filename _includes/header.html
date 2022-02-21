@@ -25,41 +25,16 @@
             <hr style="border:3px solid $theme-primary;">
             <p>Please find on my website materials of some of my recent projects.</p>-->
 
-            <script src="https://unpkg.com/typeit@8.2.0/dist/index.umd.js"></script>
+            <span id="myElement"></span>
 
-            <script type="text/javascript">
-                new TypeIt('#element', {
-  speed: 45
-})
-.type('The programers')
-.pause(300)
-.options({speed: 200})
-.delete(3)
-.options({speed: 45})
-.pause(300)
-.type('mer\'s wife sent him to teh sto.', { delay: 400})
-.move(-5, { delay: 200})
-.delete(2, { delay: 200})
-.type('he', { delay: 200})
-.move(null, {to: 'END'})
-.pause(500)
-.options({speed: 200})
-.delete(7)
-.type('he store.')
-.pause(500)
-.break()
-.options({speed: 45})
-.type('Her instructions were <em>"Buy butter. See if they have 10 eggs. If they do, buy ten.</em>"')
-.pause(1000)
-.break({ delay: 1000 })
-.type('He came back with ten packs of butter. ')
-.pause(1000)
-.type('Because they have eggs.')
-.go();
+             <!-- The script itself, loaded AFTER your root element. -->
+            <script src="https://cdn.jsdelivr.net/npm/typeit@8.2.0/dist/typeit.min.js"></script>
+            <script>
+                new TypeIt("#myElement", {
+                strings: "This is what will be typed!",
+                }).go();
             </script>
 
-<span id="element"> </h>
-            
         </div>
     </div>
     <p style="position:absolute; bottom:0; right:0; margin-right: 20px; color: #1E2460; font-size: 12px;">&#169; 2022 LAZ. <a href="https://github.com/luccalino/luccalino.github.io">Source code.</a></p>
