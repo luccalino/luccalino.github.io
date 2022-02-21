@@ -32,12 +32,20 @@
     
             <script>
             new TypeIt("#myElement", {
-                  speed: 50,
+                  speed: 30,
                     startDelay: 900
             })
-                .type("the mot versti", {delay: 100})
-                .move(-8, {delay: 100})
-                .type('s', {delay: 400})
+                .type("wel", {delay: 100})
+                .move(null, {to: 'START', instant: true, delay: 300})
+                .move(1, {delay: 200})
+                .delete(1)
+                .type('W', {delay: 225})
+                .pause(200)
+                .move(null, {to: 'END'})
+                .type('come, dear vistor')
+                .move(-4, {delay: 150})
+                .type('i')
+                .move(null, {to: 'END'})
             .go();
             </script>
             
