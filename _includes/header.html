@@ -32,8 +32,13 @@
     
             <script>
             new TypeIt("#myElement", {
-                strings: "Welcome, dear visitor!",
-            }).go();
+                  speed: 50,
+                    startDelay: 900
+            })
+                .type("the mot versti", {delay: 100})
+                .move(-8, {delay: 100})
+                .type('s', {delay: 400})
+            .go();
             </script>
             
             <hr style="border:3px solid $theme-primary;">
