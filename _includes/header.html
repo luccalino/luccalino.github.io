@@ -25,7 +25,7 @@
         -->
             <p></p>
             <!-- A root element for TypeIt to target. -->
-            <h1 style="font-size: 5vw;" id="myElement"></h1><!--style="font-size: 24px;" -->
+            <h1 id="myElement"></h1><!--style="font-size: 24px;" -->
 
             <!-- The script itself, loaded AFTER your root element. -->
             <script src="https://unpkg.com/typeit@8.2.0/dist/index.umd.js"></script>
@@ -41,7 +41,9 @@
                 .type('W', {delay: 325})
                 .pause(400)
                 .move(null, {to: 'END'})
-                .type('come')
+                .delete(1)
+                .delete(1)
+                .type("'come")
                 .pause(600)
                 .type(', dear vistor')
                 .move(-3, {delay: 350})
