@@ -211,7 +211,9 @@ header {
                 font-size: 13px;
                 margin-bottom: 50px;
             }
-            #myElement{color:red;}
+            #myElement {
+                font-size: 5vw;
+            }
         }
     }
     @media (min-width: 768px) {
