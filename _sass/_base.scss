@@ -213,6 +213,7 @@ header {
             }
             #myElement {
                 font-size: 12pt;
+                color: red;
             }
         }
     }
@@ -226,6 +227,7 @@ header {
             transform: translateY(-50%);
             padding: 0 50px;
             .header-content-inner {
+                color: $theme-primary; // white; //rgba(white, .7);
                 max-width: 1000px;
                 margin-left: auto;
                 margin-right: auto;
