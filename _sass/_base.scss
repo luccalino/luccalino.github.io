@@ -442,4 +442,23 @@ input[type=checkbox]:checked ~ label > img {
     background:transparent url(https://upload.wikimedia.org/wikipedia/commons/4/42/Loading.gif) center center no-repeat;
 }
 
+// Hover over shower curtain
+.hover_over {
+  position: relative;
+  text-decoration: underline;
+}
+
+sc {
+  position: absolute;
+  left: 0;
+  top: 20;
+  background-image: url('../img/shower_curtain.png');
+  display: none;
+  width: 100px;
+  height: 100px;
+}
+
+.hover_over:hover > sc {
+  display: block;
+}
 
