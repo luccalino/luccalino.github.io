@@ -1,100 +1,74 @@
 <header>
-    <div class="header-content">
-        <div class="header-content-inner">
-       
-        <!---
-            <div id="quote"></div>
-            
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-            
-            <script>
-            $(function () {
-            count = 0;
-            wordsArray = ["Friend! ", "Visitor!", "Guest!"]; 
-            setInterval(function () {
-            count++;
-            $("#word").fadeOut(400, function () {
-            $(this).text(wordsArray[count % wordsArray.length]).fadeIn(400);
-            });
-            }, 2000);
-            });
-            </script>
-            
-            <p></p>
-            <h1 style="font-size: 28px;">Welcome, dear <div id="word" style="display:inline;vertical-align:top;">Friend!</div></h1>
-        -->
-            <p></p>
-            <!-- A root element for TypeIt to target. -->
-            <h1 id="myElement"></h1><!--style="font-size: 24px;" -->
-            
-            <!-- The script itself, loaded AFTER your root element. -->
-            <script src="https://unpkg.com/typeit@8.2.0/dist/index.umd.js"></script>
-    
-            <script>
-            new TypeIt("#myElement", {
-                    startDelay: 900
-            })
-                .type("qel", {delay: 400})
-                .move(null, {to: 'START', instant: true, delay: 300})
-                .move(1, {delay: 300})
-                .delete(1)
-                .type('W', {delay: 325})
-                .pause(400)
-                .move(null, {to: 'END'})
-                .type('come')
-                .pause(600)
-                .type(', dear vistor')
-                .move(-3, {delay: 350})
-                .type('i')
-                .move(null, {to: 'END'})
-                .type('!')
-                .delete(1)
-                .delete(1)
-                .delete(1)
-                .delete(1)
-                .delete(1, {delay: 900, instant: true})
-                .delete(1)
-                .delete(1)
-                .delete(1)
-                .pause(600)
-                .type('guest?', {delay: 325})
-                .pause(400)
-                .delete(1)
-                .type('!')
-                .delete(1)
-                .delete(1)
-                .delete(1)
-                .delete(1)
-                .delete(1)
-                .delete(1)
-                .pause(700)
-                .type('friend!')
-            .go();
-            </script>
-            
-            <hr style="border:3px solid $theme-primary;">
-            <p>Please find on my website materials of some of my recent endeavors.</p>
+  <div class="header-content">
+    <div class="header-content-inner">
+      <h1 id="myElement"></h1>
+      <script src="https://unpkg.com/typeit@8.2.0/dist/index.umd.js"></script>
+      
+      <script>
+        new TypeIt("#myElement", {
+          startDelay: 900,
+          cursor: true,
+          speed: 100,
+          cursorSpeed: 800,
+        })
+        .type("qel", {delay: 400})
+        .move(null, {to: 'START', instant: true, delay: 300})
+        .move(1, {delay: 300})
+        .delete(1)
+        .type('W', {delay: 325})
+        .pause(400)
+        .move(null, {to: 'END'})
+        .type('come')
+        .pause(600)
+        .type(', dear visitor')
+        .move(-3, {delay: 350})
+        .type('i')
+        .move(null, {to: 'END'})
+        .type('!')
+        .go();
+      </script>
 
-            <p></p>
-          <!--- <img src="img/pngegg.png" alt="Scroll" style="position:absolute; bottom:0; width:48px;height:48px;"> --->
-            
-        </div>
+      <hr style="border:3px solid $theme-primary;">
+      <p>Please find on my website materials of some of my recent endeavors.</p>
     </div>
-	
-    <!---<div id="scroller" style="position:absolute; bottom:0;visibility:hidden;" class="scrolldown-wrapper">
-	<div class="scrolldown">
-		<svg height="20" width="6.9">
-			<circle class="scrolldown-p1" cx="5" cy="15" r="2" />
-			<circle class="scrolldown-p2" cx="5" cy="15" r="2" />
-		</svg>
-	</div>
-    </div> 
-	
-    <script>
-	setTimeout(function(){
-	document.getElementById('scroller').style.visibility = "visible";
-	},11200);	
-   </script> --->
-	    
-    <p style="position:absolute; bottom:0; right:0; margin-right: 20px; color: #1E2460; font-size: 8px;">&#169; 2022 LAZ. <a href="https://github.com/luccalino/luccalino.github.io">Source code.</a></p>
+  </div>
+  
+  <p style="position:absolute; bottom:0; right:0; margin-right: 20px; color: #1E2460; font-size: 8px;">&#169; 2022 LAZ. <a href="https://github.com/luccalino/luccalino.github.io">Source code.</a></p>
 </header>
+
+<style>
+  #myElement {
+    font-size: 5vw; /* Responsive font size */
+  }
+
+  #myElement .ti-cursor {
+    font-size: 5vw; /* Responsive cursor size */
+  }
+
+  @media (min-width: 1200px) {
+    #myElement {
+      font-size: 3vw;
+    }
+    #myElement .ti-cursor {
+      font-size: 3vw;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #myElement {
+      font-size: 6vw;
+    }
+    #myElement .ti-cursor {
+      font-size: 6vw;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #myElement {
+      font-size: 8vw;
+    }
+    #myElement .ti-cursor {
+      font-size: 8vw;
+    }
+  }
+</style>
