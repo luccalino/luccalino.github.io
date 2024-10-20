@@ -7,7 +7,19 @@
 		 <p class="text-faded-main-dark">I studied Economics at the University of Zurich, with exchanges to Sciences Po (Paris), 
 			Boğaziçi University (Istanbul) and Universitat Pompeu Fabra (Barcelona), as well as Food Mobility at the 
 			University of Gastronomic Sciences in Pollenzo (Italy). Currently, I am a Postdoctoral Researcher/Lecturer in Agricultural Economics and Policy at <a href="https://aecp.ethz.ch" target="_blank"><img src="/img/logo/192px-ETH_Zürich_Logo_black.png" style="cursor:pointer; padding-bottom: 2px; padding-top: -2px;" width="70" height="13"></a>.</p>  
-                <!--<h3 class="section-heading">I code and cook</h3>-->
+    <script>
+        // Replace 'your-namespace' and 'your-key' with custom values
+        fetch('https://api.countapi.xyz/hit/luccalino.github.io/visitors')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('visitor-number').innerText = `You are visitor number: ${data.value}`;
+            })
+            .catch(error => {
+                document.getElementById('visitor-number').innerText = 'Error loading visitor count';
+                console.error('Error:', error);
+            });
+    </script>
+	<!--<h3 class="section-heading">I code and cook</h3>-->
 		<p class="text-faded-main-dark">I gained valuable work experiences at the Swiss Central Bank and a commercial bank, on Swiss and international (FR, IT) vineyards and apple orchards, as well as in a bio-bakery and Italian restaurant kitchen.</p>    
 		<p class="text-faded-main-dark">Equipped with enormous passion and fascination for data-driven investigations 
 			with food and agriculture related data (and beyond!), I pursue the vision to positively influence our planet and society 
