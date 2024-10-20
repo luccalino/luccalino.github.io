@@ -52,7 +52,7 @@
                 .delete(1)
                 .delete(1)
                 .pause(700)
-                .type("friend #${visitorCount}!")
+                .type(`friend #${visitorCount}!`) // Correct usage of template literal here
                 .go();
           })
           .catch(error => {
@@ -94,8 +94,8 @@
       font-size: 6vw;
     }
   }
+</style>
 
-  </style>
 
   <!--<header>
   <div class="header-content">
