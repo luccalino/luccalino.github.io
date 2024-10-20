@@ -1,75 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-  <head>
-
+<head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163585861-3"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-163585861-3');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-163585861-3');
     </script>
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Farm-level data on production systems of apple growers in Switzerland">
+    <meta name="author" content="Lucca Zachmann, Chloe McCallum, Robert Finger">
 
-    <title>Apple producer data</title>
+    <title>Apple Producer Data</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <!-- Bootstrap Core CSS (CDN for faster loading) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <!-- Custom Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+    <!-- Google Fonts (Use preconnect to improve loading time) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Merriweather:300,400,700,900" rel="stylesheet" type="text/css">
 
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/main.css" type="text/css">
-
+    <!-- Custom CSS (Minified) -->
+    <link rel="stylesheet" href="css/main.min.css" type="text/css">
 </head>
-  
-<body>
-  
-  <section id="agrometeo">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-              <h2 class="section-heading">Farm-level data on production systems, farmer- and farm characteristics of apple growers in Switzerland</h2>
-              <hr class="primary text-center">
-              <p class="text-center">Lucca Zachmann, Chloe McCallum, Robert Finger
-              </p>
-              <p class="text-faded-main-dark loading">
-                  <input type="checkbox" id="zoomCheck57">
-                  <label for="zoomCheck57">
-                        <img class="two" src='img/network_radial_partial_apples_Schweiz_ws.png' width="741" height="1000" style="background-color: white;"> 
-                  </label>
-              </p>  
-              <p class="text-faded-main-dark">We here present survey data from apple growers across Switzerland. Data from 245 apple growers was collected, using an online survey in French and German in 2022. The sampled growers represent 24.4% from total land under apples. Apple production is one of the most economically relevant and pesticide intensive crops. Hence, the focus of the survey is on growers’ pest management decisions and marketing strategies. Survey data contains details on growers’ agronomic practices such as grown cultivars, pest management against fungi, insects, and weeds, as well as pesticide use for cosmetic purposes. Moreover, we collected information on pest management after harvest, i.e. storage loss strategies. Marketing characteristics include the sales channel chosen as well as labels used and contract arrangements with buyers. Moreover, detailed data about farm management strategies, behavioral factors, as well as other farm- and farmer characteristics was collected. Survey data is matched with a rich set of environmental data, i.e. precipitation, temperature, and apple scab infection risk.
-              </p>
-              <p class="text-faded-main-dark">
-              Materials including data available via <a href="https://www.research-collection.ethz.ch/handle/20.500.11850/602779" target="_blank"><i><img src="/img/logo/192px-ETH_Zürich_Logo_black.png" style="cursor:pointer; padding-bottom: 2px; padding-top: -2px;" width="70" height="13"></i></a> Research Collection (open access <img src="/img/Open_Access_logo_PLoS_white.svg.png" style="cursor:default; padding-bottom: 2px; padding-top: -2px;" width="11" height="20">). 
-              </p>  
-     
-         </div>
-      </div>
-    </div>             
- 
-    <div class="col-lg-12 text-center">
-    <h2 class="section-heading"></h2>
-      <p></p>
-      <a href="../#data" class="btn btn-primary btn-xl page-scroll">Back</a>
-    </div>
 
-</section>
-                                                                                
+<body>
+    <section id="agrometeo">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Farm-level data on production systems, farmer- and farm characteristics of apple growers in Switzerland</h2>
+                    <hr class="primary">
+                    <p>Lucca Zachmann, Chloe McCallum, Robert Finger</p>
+
+                    <!-- Lazy Load Image for Faster Initial Load -->
+                    <p class="text-faded-main-dark loading">
+                        <input type="checkbox" id="zoomCheck57">
+                        <label for="zoomCheck57">
+                            <img class="two lazyload" data-src="img/network_radial_partial_apples_Schweiz_ws.png" width="741" height="1000" alt="Apple Growers Network">
+                        </label>
+                    </p>
+
+                    <p class="text-faded-main-dark">
+                        We present survey data from apple growers across Switzerland. Data from 245 growers was collected using an online survey in French and German in 2022. The sampled growers represent 24.4% of total land under apples. The focus is on growers' pest management decisions and marketing strategies, covering agronomic practices, pest management, storage loss strategies, marketing channels, and more. The data is matched with environmental information such as precipitation, temperature, and apple scab infection risk.
+                    </p>
+
+                    <p class="text-faded-main-dark">
+                        Materials including data available via <a href="https://www.research-collection.ethz.ch/handle/20.500.11850/602779" target="_blank">
+                            <img src="/img/logo/192px-ETH_Zürich_Logo_black.png" alt="ETH Zürich" width="70" height="13"></a> Research Collection (open access
+                        <img src="/img/Open_Access_logo_PLoS_white.svg.png" alt="Open Access" width="11" height="20">).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 text-center">
+            <a href="../#data" class="btn btn-primary btn-xl page-scroll">Back</a>
+        </div>
+    </section>
+
+    <!-- jQuery (CDN for faster loading) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS (CDN) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Lazy Loading for Images -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.0/lazysizes.min.js" async></script>
+
 </body>
+
 </html>
