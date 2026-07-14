@@ -1,0 +1,11 @@
+name = "strava-heatmap"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Public, non-secret config. Replace with your values.
+[vars]
+CLIENT_ID = "39680"
+ALLOWED_ORIGIN = "https://luccalino.github.io"
+
+# CLIENT_SECRET is NOT stored here. Set it as an encrypted secret:
+#   wrangler secret put CLIENT_SECRET
