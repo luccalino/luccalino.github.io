@@ -6,10 +6,11 @@ body {
 
 body {
     @include sans-serif-font; //@include serif-font;
+    background-color: var(--page-bg);
 }
 
 hr {
-    border-color: $theme-primary;
+    border-color: var(--color-primary);
     border-width: 3px;
     max-width: 50px;
 }
@@ -20,10 +21,10 @@ hr.light {
 
 a {
     @include transition-all;
-    color: $theme-primary;
+    color: var(--color-primary);
     &:hover,
     &:focus {
-        color: darken($theme-primary, 10%);
+        color: var(--color-primary-hover);
     }
 }
 
@@ -34,6 +35,7 @@ h4,
 h5,
 h6 {
     @include sans-serif-font;
+    font-family: var(--heading-font);
 }
 
 p {
@@ -55,27 +57,27 @@ p {
 }
 
 .bg-primary {
-    background-color: $theme-primary;
+    background-color: var(--color-primary);
 }
 
 .bg-dark {
-    background-color: $theme-dark;
+    background-color: var(--color-dark);
     color: white;
 }
 
 .bg-medium {
-    background-color: $theme-medium;
+    background-color: var(--color-medium);
     color: rgba(white, .7);
 }
 
 .bg-about {
-    background-color: $theme-about;
-    color: $theme-primary;
+    background-color: var(--color-about);
+    color: var(--color-primary);
 }
 
 .bg-teaching {
-    background-color: $theme-teaching;
-    color: $theme-primary;
+    background-color: var(--color-teaching);
+    color: var(--color-primary);
 }
 
 .text-faded {
@@ -88,7 +90,7 @@ p {
 }
 
 .text-faded-main-dark {
-    color: $theme-primary;
+    color: var(--color-primary);
     text-align: left;
 }
 
@@ -111,18 +113,18 @@ aside {
 // Navigation
 
 .navbar-default {
-    background-color: #bfc6da; //white;
+    background-color: var(--color-about); //white;
     border-color: rgba($theme-dark, .5);
     @include sans-serif-font;
     @include transition-all;
     .navbar-header .navbar-brand {
-        color: $theme-primary;
+        color: var(--color-primary);
         @include sans-serif-font;
         font-weight: 700;
         text-transform: uppercase;
         &:hover,
         &:focus {
-            color: darken($theme-primary, 10%);
+            color: var(--color-primary-hover);
         }
     }
     .nav {
@@ -132,15 +134,15 @@ aside {
                 text-transform: uppercase;
                 font-weight: 700;
                 font-size: 13px;
-                color: $theme-dark;
+                color: var(--color-dark);
                 &:hover {
-                    color: $theme-primary;
+                    color: var(--color-primary);
                 }
             }
             &.active {
                 > a,
                 > a:focus {
-                    color: $theme-primary !important;
+                    color: var(--color-primary) !important;
                     background-color: transparent;
                     &:hover {
                         background-color: transparent;
@@ -153,35 +155,35 @@ aside {
         background-color: transparent;
         border-color: rgba(white, .3);
         .navbar-header .navbar-brand {
-            color: $theme-primary; //white; //rgba(white, .7);
+            color: var(--color-primary); //white; //rgba(white, .7);
             &:hover,
             &:focus {
-                color: yellow; // white;
+                color: var(--nav-hover-accent); // white;
             }
         }
         .nav > li > a,
         .nav > li > a:focus {
-            color: $theme-primary; //white; //rgba(white, .7);
+            color: var(--color-primary); //white; //rgba(white, .7);
             &:hover {
-                color: yellow; // white;
+                color: var(--nav-hover-accent); // white;
             }
         }
         &.affix {
-            background-color: white;
+            background-color: var(--nav-affix-bg);
             border-color: rgba($theme-dark, .5);
             .navbar-header .navbar-brand {
-                color: $theme-primary;
+                color: var(--color-primary);
                 font-size: 14px;
                 &:hover,
                 &:focus {
-                    color: $theme-about; //darken($theme-primary, 10%);
+                    color: var(--color-about); //darken($theme-primary, 10%);
                 }
             }
             .nav > li > a,
             .nav > li > a:focus {
-                color: $theme-about; //$theme-dark;
+                color: var(--color-about); //$theme-dark;
                 &:hover {
-                    color: $theme-about; //$theme-primary;
+                    color: var(--color-about); //$theme-primary;
                 }
             }
         }
@@ -194,13 +196,25 @@ header {
     position: relative;
     width: 100%;
     min-height: auto;
-    @include background-cover;
-    background-position: center;
-    background-image: url('../img/avatar_new_one 2.png');
     text-align: center;
     color: white;
+    overflow: hidden;
+    // The background art lives on a ::before layer (not directly on
+    // `header`) so a per-theme CSS `filter` can retone the image without
+    // also filtering the text sitting on top of it.
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        @include background-cover;
+        background-position: center;
+        background-image: url('../img/avatar_new_one 2.png');
+        filter: var(--header-filter);
+        z-index: 0;
+    }
     .header-content {
         position: relative;
+        z-index: 1;
         text-align: center;
         padding: 150px 15px 150px; //100px 15px 100px;
         width: 100%;
@@ -212,14 +226,14 @@ header {
                 text-transform: none; //uppercase;
                 margin-top: 0;
                 margin-bottom: 0;
-                color: $theme-primary; // white; // added
+                color: var(--color-primary); // white; // added
             }
             hr {
                 margin: 30px auto;
             }
             p {
                 font-weight: 500;
-                color: $theme-primary; // white; //rgba(white, .7);
+                color: var(--color-primary); // white; //rgba(white, .7);
                 font-size: 13px;
                 margin-bottom: 50px;
             }
@@ -235,7 +249,7 @@ header {
             transform: translateY(-50%);
             padding: 0 50px;
             .header-content-inner {
-                color: $theme-primary; // white; //rgba(white, .7);
+                color: var(--color-primary); // white; //rgba(white, .7);
                 max-width: 1000px;
                 margin-left: auto;
                 margin-right: auto;
@@ -254,7 +268,7 @@ header {
 
 .section-heading {
     margin-top: 0;
-    color: $theme-primary; // Added full line.
+    color: var(--color-primary); // Added full line.
 }
 
 .service-box {
@@ -274,11 +288,11 @@ header {
     max-width: 650px;
     margin: 0 auto;
     .portfolio-box-caption {
-        color: $theme-primary; //white;
+        color: var(--color-primary); //white;
         opacity: 0;
         display: block;
-        background: rgba(#bfc6da, .9); //rgba( $theme-primary, .9 );
-        border: 2px solid #bfc6da; //added full line
+        background: var(--color-about); //rgba( $theme-primary, .9 );
+        border: 2px solid var(--color-about); //added full line
         position: absolute;
         bottom: 0;
         text-align: center;
@@ -295,7 +309,7 @@ header {
             .project-name {
                 @include sans-serif-font;
                 padding: 0 15px;
-                color: $theme-primary; // added full line
+                color: var(--color-primary); // added full line
             }
             .project-category {
                 text-transform: uppercase;
@@ -316,12 +330,12 @@ header {
         .portfolio-box-caption {
             .portfolio-box-caption-content {
                 .project-category {
-                    color: $theme-primary; // added full line
+                    color: var(--color-primary); // added full line
                     font-size: 16px;
                 }
                 .project-name {
                     font-size: 14px; //22px;
-                    color: $theme-primary; // added full line
+                    color: var(--color-primary); // added full line
                 }
             }
         }
@@ -336,11 +350,11 @@ header {
 
 // Bootstrap Overrides
 .text-primary {
-    color: $theme-primary;
+    color: var(--color-primary);
 }
 
 .text-primary-align {
-    color: $theme-primary;
+    color: var(--color-primary);
     text-align: left;
 }
 
@@ -372,7 +386,7 @@ header {
 
 // Contact
 #contact .fa {
-    color: $theme-dark;
+    color: var(--color-dark);
     font-size: 4em;
 }
 
@@ -381,13 +395,13 @@ header {
 ::-moz-selection {
     color: white;
     text-shadow: none;
-    background: $theme-dark;
+    background: var(--color-dark);
 }
 
 ::selection {
     color: white;
     text-shadow: none;
-    background: $theme-dark;
+    background: var(--color-dark);
 }
 
 img::selection {
@@ -401,7 +415,7 @@ img::-moz-selection {
 }
 
 body {
-    -webkit-tap-highlight-color: $theme-dark;
+    -webkit-tap-highlight-color: var(--color-dark);
 }
 
 // Enlarge figure
@@ -484,7 +498,7 @@ img.sc {
 }
   
 .scrolldown {
-	border: 2px solid #1E2460;
+	border: 2px solid var(--color-primary);
 	border-radius: 30px;
 	height: 46px;
 	margin: 0 auto 8px;
@@ -497,7 +511,7 @@ img.sc {
 	animation-duration: 1.5s;
 	animation-name: scrolldown;
 	animation-iteration-count: infinite;
-	fill: #1E2460;
+	fill: var(--color-primary);
 }
   
 .scrolldown-p2 {
@@ -517,5 +531,16 @@ img.sc {
 		opacity: 0;
 		transform: translate(0, 8px);
 	}
+}
+
+// Theme: classic overrides -------------------------------------------------
+// A lot of body copy across the section includes carries a hardcoded
+// `style="color:#1E2460;"` inline attribute rather than a class. Rather than
+// touching every one of those (~100, spread across 8 files), retone them
+// here: an inline style always beats a plain stylesheet rule, but not one
+// marked !important, and `[style*="..."]` can match on the raw attribute
+// text.
+[data-theme="classic"] [style*="#1E2460"] {
+    color: var(--color-primary) !important;
 }
 
