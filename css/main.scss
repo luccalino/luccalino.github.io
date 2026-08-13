@@ -34,7 +34,7 @@
 // }
 
 // variables.less
-$theme-primary: #1E2460; //#F05F40;
+$theme-primary: #132347; //#F05F40;
 $theme-dark: #222;
 $theme-medium: #87CEEB;
 $theme-about: #bfc6da;
@@ -42,28 +42,34 @@ $theme-teaching: #d4c6b0;
 
 // Theme system -----------------------------------------------------------
 // Two color-coded themes, toggled at runtime via a `data-theme` attribute
-// on <html> (see js in _includes/nav.html). Default (":root") is the
-// original/current look, values unchanged from the plain $theme-* above -
-// "classic" is a warm parchment-and-sepia palette layered on top via
-// attribute-scoped custom-property overrides, so nothing changes unless
-// the attribute is present.
+// on <html> (see js in _includes/nav.html). Default (":root") is navy blue
+// (background/section color) + desert sun (text/accent on navy) + a
+// darkorange retone of the header's route lines. "classic" is a warm
+// parchment-and-sepia palette layered on top via attribute-scoped
+// custom-property overrides, so nothing changes unless the attribute is
+// present. --color-accent is the "on navy" text color for default, and
+// deliberately mirrors --color-primary under classic (where sections stay
+// light, not dark) so the .bg-about contrast-fix rules in _base.scss are a
+// no-op there.
 :root {
-    --color-primary: #1E2460;
-    --color-primary-hover: #121539;
-    --nav-hover-accent: yellow;
+    --color-primary: #132347;
+    --color-primary-hover: #080F1F;
+    --color-accent: #D9A24B;
+    --nav-hover-accent: #FF8C00;
     --nav-affix-bg: white;
     --color-dark: #222;
-    --color-about: #bfc6da;
+    --color-about: #132347;
     --color-teaching: #d4c6b0;
     --color-medium: #87CEEB;
     --page-bg: #ffffff;
     --heading-font: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    --header-filter: none;
+    --header-filter: invert(0.21) sepia(0.1) hue-rotate(-5deg) saturate(3) brightness(0.62) contrast(4);
 }
 
 :root[data-theme="classic"] {
     --color-primary: #3B2F2A;
     --color-primary-hover: #1D1715;
+    --color-accent: #3B2F2A;
     --nav-hover-accent: #8C5A2B;
     --nav-affix-bg: #F7F2E7;
     --color-dark: #2A211A;

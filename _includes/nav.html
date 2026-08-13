@@ -39,7 +39,6 @@
                 </li>
                 <li id="theme-toggle-item">
                     <button id="theme-toggle" type="button" aria-label="Switch color theme">
-                        <span class="theme-toggle-dot" aria-hidden="true">&#9679;</span>
                         <span class="theme-toggle-label">Classic</span>
                     </button>
                 </li>
@@ -53,47 +52,32 @@
 <style>
     /* Sits as the last nav item so it always has its own reserved space -
        inherits the navbar's own fixed-top/collapse behavior for free,
-       instead of floating independently and risking overlap with it. */
+       instead of floating independently and risking overlap with it.
+       Deliberately unstyled as a "button" - no border/background/pill - so
+       it reads as plain nav text, matching its siblings' size and baseline.
+       Its color comes from _sass/_base.scss (#theme-toggle rules), which
+       track whatever color the surrounding nav links have in each state. */
     #theme-toggle-item {
         display: flex;
         align-items: center;
     }
     #theme-toggle {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        margin: 15px 0 15px 15px;
-        padding: 5px 14px;
-        border-radius: 300px;
-        border: 1.5px solid var(--color-primary);
-        background: transparent;
-        color: var(--color-primary);
+        background: none;
+        border: none;
+        padding: 15px 15px;
+        margin: 0;
         font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: .05em;
+        letter-spacing: .03em;
+        line-height: 20px;
         cursor: pointer;
-        -webkit-transition: all .25s;
-        transition: all .25s;
-    }
-    #theme-toggle:hover,
-    #theme-toggle:focus {
-        background: var(--color-primary);
-        color: white;
-        outline: none;
-    }
-    #theme-toggle .theme-toggle-dot {
-        font-size: 9px;
-        position: relative;
-        top: -1px;
+        transition: color .25s;
     }
     @media (max-width: 767px) {
-        #theme-toggle-item {
-            padding: 0 15px;
-        }
         #theme-toggle {
-            margin: 8px 0;
+            padding: 8px 15px;
         }
     }
 </style>
