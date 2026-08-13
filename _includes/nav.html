@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand page-scroll" href="#page-top">
-                <img src='/img/logo/favicon.ico' style="margin-top:-16px;" height="50" width="50">
+                <img class="recolor-navy" src='/img/logo/favicon.ico' style="margin-top:-16px;" height="50" width="50">
             </a>
         </div>
 
@@ -38,8 +38,11 @@
                     <a class="page-scroll" href="#contact">Contact</a>
                 </li>
                 <li id="theme-toggle-item">
-                    <button id="theme-toggle" type="button" aria-label="Switch color theme">
-                        <span class="theme-toggle-label">Classic</span>
+                    <button id="theme-toggle" type="button" aria-label="Switch to the orange theme" title="Switch theme">
+                        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                            <circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                            <circle class="theme-toggle-dot" cx="7" cy="7" r="2.6" fill="currentColor"/>
+                        </svg>
                     </button>
                 </li>
             </ul>
@@ -53,27 +56,31 @@
     /* Sits as the last nav item so it always has its own reserved space -
        inherits the navbar's own fixed-top/collapse behavior for free,
        instead of floating independently and risking overlap with it.
-       Deliberately unstyled as a "button" - no border/background/pill - so
-       it reads as plain nav text, matching its siblings' size and baseline.
-       Its color comes from _sass/_base.scss (#theme-toggle rules), which
-       track whatever color the surrounding nav links have in each state. */
+       Icon-only (a ring that gains a filled dot when the orange theme is
+       active, like a selected radio button) - no text label, sized/aligned
+       to match its sibling nav links. Its color comes from
+       _sass/_base.scss (#theme-toggle rules), which track whatever color
+       the surrounding nav links have in each state. */
     #theme-toggle-item {
         display: flex;
         align-items: center;
     }
     #theme-toggle {
+        display: flex;
+        align-items: center;
         background: none;
         border: none;
         padding: 15px 15px;
         margin: 0;
-        font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 11px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: .03em;
-        line-height: 20px;
         cursor: pointer;
         transition: color .25s;
+    }
+    #theme-toggle .theme-toggle-dot {
+        opacity: 0;
+        transition: opacity .2s;
+    }
+    :root[data-theme="orange"] #theme-toggle .theme-toggle-dot {
+        opacity: 1;
     }
     @media (max-width: 767px) {
         #theme-toggle {
@@ -86,29 +93,28 @@
     (function () {
         var STORAGE_KEY = 'laz-theme';
         var btn = document.getElementById('theme-toggle');
-        var labelEl = btn.querySelector('.theme-toggle-label');
 
         function labelFor(theme) {
-            return theme === 'classic' ? 'Modern' : 'Classic';
+            return theme === 'orange' ? 'Switch to the original theme' : 'Switch to the orange theme';
         }
 
         function apply(theme) {
-            if (theme === 'classic') {
-                document.documentElement.setAttribute('data-theme', 'classic');
+            if (theme === 'orange') {
+                document.documentElement.setAttribute('data-theme', 'orange');
             } else {
                 document.documentElement.removeAttribute('data-theme');
             }
-            labelEl.textContent = labelFor(theme);
+            btn.setAttribute('aria-label', labelFor(theme));
         }
 
         btn.addEventListener('click', function () {
-            var isClassic = document.documentElement.getAttribute('data-theme') === 'classic';
-            var next = isClassic ? 'current' : 'classic';
+            var isOrange = document.documentElement.getAttribute('data-theme') === 'orange';
+            var next = isOrange ? 'original' : 'orange';
             try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
             apply(next);
         });
 
-        // Sync the label with whatever head.html's early script already applied.
-        apply(document.documentElement.getAttribute('data-theme') === 'classic' ? 'classic' : 'current');
+        // Sync with whatever head.html's early script already applied.
+        apply(document.documentElement.getAttribute('data-theme') === 'orange' ? 'orange' : 'original');
     })();
 </script>
