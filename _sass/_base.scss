@@ -142,8 +142,25 @@ aside {
     border-color: var(--color-accent);
     @include sans-serif-font;
     @include transition-all;
-    .navbar-toggle .icon-bar {
-        background-color: var(--color-accent);
+    // The divider between the brand/toggle row and the nav links list,
+    // only visible once the mobile menu is expanded (Bootstrap gives the
+    // collapse panel its own border-top, separate from navbar-fixed-top's
+    // border above) - themed the same as that outer border so both bars
+    // match, not just the one that's always visible.
+    .navbar-collapse,
+    .navbar-form {
+        border-color: var(--color-accent);
+    }
+    .navbar-toggle {
+        background-color: var(--color-about);
+        border-color: var(--color-accent);
+        &:hover,
+        &:focus {
+            background-color: var(--color-about);
+        }
+        .icon-bar {
+            background-color: var(--color-accent);
+        }
     }
     .navbar-header .navbar-brand {
         color: var(--color-accent);
@@ -252,10 +269,16 @@ header {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    // `dvh` accounts for mobile browser chrome (address bar) shrinking the
-    // real visible area - falls back to the `vh` line above on browsers
-    // that don't support it.
+    // `dvh` tracks the real visible area as mobile browser chrome
+    // (address bar) shows/hides - falls back to the `vh` line above on
+    // browsers that don't support it. `lvh` (the viewport size with
+    // chrome fully hidden - the largest it ever gets) goes last so the
+    // header is always at least as tall as the visible area in every
+    // chrome state, even right at page load before the browser has
+    // settled on one: a tiny bit of overscroll beneath the fold, never a
+    // sliver of the next section peeking in above it.
     min-height: 100dvh;
+    min-height: 100lvh;
     display: flex;
     align-items: center;
     text-align: center;
@@ -631,5 +654,19 @@ img.sc {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
     color: var(--color-accent);
+}
+
+// The About section's "Unravel me" button (.togglebtn) keeps the opposite
+// pairing from the rest of the .btn-primary buttons above - orange fill
+// with navy text, not blue fill with orange text.
+[data-theme="orange"] .togglebtn.btn-primary,
+[data-theme="orange"] .togglebtn.btn-primary:hover,
+[data-theme="orange"] .togglebtn.btn-primary:focus,
+[data-theme="orange"] .togglebtn.btn-primary.focus,
+[data-theme="orange"] .togglebtn.btn-primary:active,
+[data-theme="orange"] .togglebtn.btn-primary.active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-primary);
 }
 
