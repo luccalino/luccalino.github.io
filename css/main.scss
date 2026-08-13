@@ -74,7 +74,10 @@ $theme-teaching: #d4c6b0;
     --color-primary: #132347;
     --color-primary-hover: #080F1F;
     --color-accent: #D9A24B;
-    --nav-hover-accent: #FF8C00;
+    // Was a separate darkorange (#FF8C00) - now the exact same value as
+    // --color-accent, so every orange element (text, header art, icons,
+    // hover states) is the identical color, not a mix of two oranges.
+    --nav-hover-accent: #D9A24B;
     --nav-affix-bg: white;
     --color-dark: #222;
     --color-about: #132347;
@@ -82,15 +85,16 @@ $theme-teaching: #d4c6b0;
     --color-medium: #87CEEB;
     --page-bg: #ffffff;
     --heading-font: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    --header-filter: invert(0.21) sepia(0.1) hue-rotate(-5deg) saturate(3) brightness(0.62) contrast(4);
-    // Fit numerically (black / navy #1E2460 -> darkorange #FF8C00), with
-    // saturate/contrast deliberately capped well below their loss-minimizing
-    // extreme (5x+) - an aggressive saturate blows up small per-pixel color
-    // variance (anti-aliased edges, the .ico's alpha-blended pixels) into
-    // visibly wrong hues once the browser downscales/rasterizes the icon,
-    // even though it looks perfect against the single sampled source color.
-    --icon-filter-from-black: invert(0.56) sepia(1) hue-rotate(-7deg) saturate(2.2) brightness(0.81) contrast(2.2);
-    --icon-filter-from-navy: invert(0.15) sepia(0) hue-rotate(171deg) saturate(2.2) brightness(2) contrast(2.2);
+    // All three filters below are fit numerically against #D9A24B (the same
+    // --color-accent used for text), with saturate/contrast deliberately
+    // capped well below their loss-minimizing extreme (5x+) - an aggressive
+    // saturate blows up small per-pixel color variance (anti-aliased edges,
+    // the .ico's alpha-blended pixels) into visibly wrong hues once the
+    // browser downscales/rasterizes the image, even though it looks perfect
+    // against the single sampled source color in isolation.
+    --header-filter: invert(0.152) sepia(0.126) hue-rotate(-1.5deg) saturate(3) brightness(0.581) contrast(4);
+    --icon-filter-from-black: invert(0.351) sepia(0.86) hue-rotate(-2.2deg) saturate(2.141) brightness(1.471) contrast(1.396);
+    --icon-filter-from-navy: invert(0.739) sepia(0.994) hue-rotate(-3.9deg) saturate(2.182) brightness(0.792) contrast(1.203);
 }
 
 // Import partials from `sass_dir` (defaults to `_sass`)

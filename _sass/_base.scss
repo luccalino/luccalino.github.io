@@ -588,7 +588,7 @@ img.sc {
 // default, which reads fine on the original theme's light header - only the
 // orange theme's navy header needs it switched to the accent color instead.
 [data-theme="orange"] .header-content-inner hr {
-    border-color: var(--nav-hover-accent);
+    border-color: var(--color-accent);
 }
 
 // Recolor specific black/navy icon assets (data-section icons, ETH logo,
@@ -609,8 +609,8 @@ img.sc {
 // (button-variant), not var-driven, so it can't retheme itself - override
 // its computed colors directly here instead.
 [data-theme="orange"] .btn-primary {
-    background-color: var(--nav-hover-accent);
-    border-color: var(--nav-hover-accent);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
     color: var(--color-primary);
 }
 
