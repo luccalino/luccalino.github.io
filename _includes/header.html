@@ -62,6 +62,14 @@
     font-size: 5vw; /* Responsive font size */
   }
 
+  /* TypeIt gives the cursor its own default color rather than inheriting
+     the heading's - force it to track the same theme-aware color as the
+     surrounding text (navy in the default theme, the orange accent only
+     in the orange theme) instead of a fixed color in both. */
+  #myElement .ti-cursor {
+    color: var(--color-accent) !important;
+  }
+
   #myElement .ti-cursor {
     font-size: 5vw; /* Responsive cursor size */
   }
