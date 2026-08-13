@@ -106,7 +106,8 @@
                     <a href="https://www.tema-agriculture-terroirs.fr/mon-viti/viticulture/les-viticulteurs-suisses-prevoient-daugmenter-la-plantation-de-varietes-resistantes-917435.php" target="_blank"><img src="/img/viti.PNG" style="cursor:pointer" width="75" height="25"></a> |
                     <a href="https://www.diegruene.ch/artikel/vermischtes/die-zukunft-gehoert-den-pilzwiderstandsfaehigen-rebsorten-514332" target="_blank"><img src="/img/logo-diegruene.svg" style="cursor:pointer" width="75" height="25"></a> </p>
                 <p style="margin-bottom:1cm;"></p>
-            </div> 
+            </div>
+            <div id="pub-more" class="is-hidden">
             <div class="col-md-6 mb-4 text-center d-flex align-items-stretch">
                       <a class="fa fa-4x wow bounceIn text-primary" href="https://onlinelibrary.wiley.com/doi/full/10.1002/jaa2.76" target="_blank"><img title="JAAEA" alt="JAAEA" src="img/jaa2.jpeg" style="cursor:pointer;border:1px solid grey;" width="150" height="210"></a>
                       <h3 style="color:#1E2460;">Nudging farmers towards low-pesticide practices: Evidence from a randomized experiment in viticulture</h3>
@@ -145,6 +146,35 @@
                     <p class="text-muted"><a href="https://www.nzz.ch/wirtschaft/reiche-leute-zahlen-ihre-steuern-frueher-ld.1405075" target="_blank"><img src="/img/nzz.png" style="cursor:pointer" width="140" height="30"></a> | 
                     <a href="https://www.luzernerzeitung.ch/wirtschaft/reiche-profitieren-von-fruhen-steuerzahlungen-ld.1041357" target="_blank"><img src="/img/lz.png" style="cursor:pointer" width="105" height="25"></a></p>
             </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button type="button" id="pub-more-btn" class="btn btn-primary btn-xl">More</button>
+            </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* #pub-more holds publications 9+ - `contents` keeps them direct
+       participants of the Bootstrap row's float grid (as if this wrapper
+       weren't there) whenever shown, `is-hidden` removes them entirely. */
+    #pub-more {
+        display: contents;
+    }
+    #pub-more.is-hidden {
+        display: none;
+    }
+</style>
+
+<script>
+    (function () {
+        var moreBtn = document.getElementById('pub-more-btn');
+        var morePubs = document.getElementById('pub-more');
+        moreBtn.addEventListener('click', function () {
+            morePubs.classList.remove('is-hidden');
+            moreBtn.style.display = 'none';
+        });
+    })();
+</script>

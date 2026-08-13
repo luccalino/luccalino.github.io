@@ -135,9 +135,16 @@ aside {
 
 .navbar-default {
     background-color: var(--color-about); //white;
-    border-color: rgba($theme-dark, .5);
+    // Mobile bottom border (the line between the fixed nav and the page
+    // beneath it) - themed to match the accent color instead of a fixed
+    // dark gray, so it reads as blue in the default theme and orange in
+    // the orange theme. Desktop overrides this below at 768px+.
+    border-color: var(--color-accent);
     @include sans-serif-font;
     @include transition-all;
+    .navbar-toggle .icon-bar {
+        background-color: var(--color-accent);
+    }
     .navbar-header .navbar-brand {
         color: var(--color-accent);
         @include sans-serif-font;
@@ -244,7 +251,13 @@ aside {
 header {
     position: relative;
     width: 100%;
-    min-height: auto;
+    min-height: 100vh;
+    // `dvh` accounts for mobile browser chrome (address bar) shrinking the
+    // real visible area - falls back to the `vh` line above on browsers
+    // that don't support it.
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
     text-align: center;
     color: white;
     overflow: hidden;
@@ -289,13 +302,7 @@ header {
         }
     }
     @media (min-width: 768px) {
-        min-height: 100%;
         .header-content {
-            position: absolute;
-            top: 50%;
-            -webkit-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
             padding: 0 50px;
             .header-content-inner {
                 color: var(--color-accent); // white; //rgba(white, .7);
