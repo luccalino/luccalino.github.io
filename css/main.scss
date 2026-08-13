@@ -34,7 +34,7 @@
 // }
 
 // variables.less
-$theme-primary: #132347; //#F05F40;
+$theme-primary: #1E2460; //#F05F40;
 $theme-dark: #222;
 $theme-medium: #87CEEB;
 $theme-about: #bfc6da;
@@ -42,16 +42,35 @@ $theme-teaching: #d4c6b0;
 
 // Theme system -----------------------------------------------------------
 // Two color-coded themes, toggled at runtime via a `data-theme` attribute
-// on <html> (see js in _includes/nav.html). Default (":root") is navy blue
-// (background/section color) + desert sun (text/accent on navy) + a
-// darkorange retone of the header's route lines. "classic" is a warm
-// parchment-and-sepia palette layered on top via attribute-scoped
-// custom-property overrides, so nothing changes unless the attribute is
-// present. --color-accent is the "on navy" text color for default, and
-// deliberately mirrors --color-primary under classic (where sections stay
-// light, not dark) so the .bg-about contrast-fix rules in _base.scss are a
-// no-op there.
+// on <html> (see js in _includes/nav.html). Default (":root") is the
+// original site look, values unchanged from the plain $theme-* above.
+// "orange" is the navy-blue + darkorange-accent palette, layered on top via
+// attribute-scoped custom-property overrides, so nothing changes unless the
+// attribute is present. --color-accent is the "on navy" text color, used
+// wherever text sits on --color-about's background; it deliberately mirrors
+// --color-primary under the default theme (where .bg-about stays light,
+// not dark) so the .bg-about contrast-fix rules in _base.scss are a no-op
+// there. --icon-filter-from-black/-from-navy recolor specific black/navy
+// icon assets (data icons, ETH logo, nav-brand mark) to the orange accent;
+// "none" by default so those assets are untouched outside the orange theme.
 :root {
+    --color-primary: #1E2460;
+    --color-primary-hover: #121539;
+    --color-accent: #1E2460;
+    --nav-hover-accent: yellow;
+    --nav-affix-bg: white;
+    --color-dark: #222;
+    --color-about: #bfc6da;
+    --color-teaching: #d4c6b0;
+    --color-medium: #87CEEB;
+    --page-bg: #ffffff;
+    --heading-font: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    --header-filter: none;
+    --icon-filter-from-black: none;
+    --icon-filter-from-navy: none;
+}
+
+:root[data-theme="orange"] {
     --color-primary: #132347;
     --color-primary-hover: #080F1F;
     --color-accent: #D9A24B;
@@ -64,21 +83,14 @@ $theme-teaching: #d4c6b0;
     --page-bg: #ffffff;
     --heading-font: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
     --header-filter: invert(0.21) sepia(0.1) hue-rotate(-5deg) saturate(3) brightness(0.62) contrast(4);
-}
-
-:root[data-theme="classic"] {
-    --color-primary: #3B2F2A;
-    --color-primary-hover: #1D1715;
-    --color-accent: #3B2F2A;
-    --nav-hover-accent: #8C5A2B;
-    --nav-affix-bg: #F7F2E7;
-    --color-dark: #2A211A;
-    --color-about: #EFE6D8;
-    --color-teaching: #E2D2B5;
-    --color-medium: #DCC9A8;
-    --page-bg: #F7F2E7;
-    --heading-font: 'Merriweather', Georgia, 'Times New Roman', serif;
-    --header-filter: sepia(0.65) saturate(1.4) hue-rotate(-15deg) brightness(0.92) contrast(1.05);
+    // Fit numerically (black / navy #1E2460 -> darkorange #FF8C00), with
+    // saturate/contrast deliberately capped well below their loss-minimizing
+    // extreme (5x+) - an aggressive saturate blows up small per-pixel color
+    // variance (anti-aliased edges, the .ico's alpha-blended pixels) into
+    // visibly wrong hues once the browser downscales/rasterizes the icon,
+    // even though it looks perfect against the single sampled source color.
+    --icon-filter-from-black: invert(0.56) sepia(1) hue-rotate(-7deg) saturate(2.2) brightness(0.81) contrast(2.2);
+    --icon-filter-from-navy: invert(0.15) sepia(0) hue-rotate(171deg) saturate(2.2) brightness(2) contrast(2.2);
 }
 
 // Import partials from `sass_dir` (defaults to `_sass`)

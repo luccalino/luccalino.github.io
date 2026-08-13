@@ -76,11 +76,11 @@ p {
 }
 
 // .bg-about (nav-mobile, Projects, Data, About, footer) sits on
-// --color-about, which under the default theme is the same navy as
+// --color-about, which under the orange theme is the same navy as
 // --color-primary - so anything that would otherwise render in
 // --color-primary needs to switch to --color-accent (the "on navy" color)
-// inside it, or it disappears. Under classic, --color-about stays light and
-// --color-accent mirrors --color-primary, so these are no-ops there.
+// inside it, or it disappears. Under the default theme, --color-about stays
+// light and --color-accent mirrors --color-primary, so these are no-ops.
 .bg-about hr {
     border-color: var(--color-accent);
 }
@@ -582,14 +582,45 @@ img.sc {
 	}
 }
 
-// Theme: classic overrides -------------------------------------------------
-// A lot of body copy across the section includes carries a hardcoded
-// `style="color:#1E2460;"` inline attribute rather than a class. Rather than
-// touching every one of those (~100, spread across 8 files), retone them
-// here: an inline style always beats a plain stylesheet rule, but not one
-// marked !important, and `[style*="..."]` can match on the raw attribute
-// text.
-[data-theme="classic"] [style*="#1E2460"] {
-    color: var(--color-primary) !important;
+// Theme: orange overrides ---------------------------------------------------
+
+// The header's separating <hr> uses the base `hr` rule (--color-primary) by
+// default, which reads fine on the original theme's light header - only the
+// orange theme's navy header needs it switched to the accent color instead.
+[data-theme="orange"] .header-content-inner hr {
+    border-color: var(--nav-hover-accent);
+}
+
+// Recolor specific black/navy icon assets (data-section icons, ETH logo,
+// nav-brand mark - see the .recolor-black/.recolor-navy classes in
+// data.html/about.html/teaching.html/nav.html) to the orange accent. A
+// CSS filter, not new image files, since these are static SVG/PNG/ICO
+// assets with no theme-aware source. No-op outside the orange theme, since
+// --icon-filter-from-* default to `none`.
+.recolor-black {
+    filter: var(--icon-filter-from-black);
+}
+
+.recolor-navy {
+    filter: var(--icon-filter-from-navy);
+}
+
+// "Unravel me" button: .btn-primary is a compile-time Sass mixin
+// (button-variant), not var-driven, so it can't retheme itself - override
+// its computed colors directly here instead.
+[data-theme="orange"] .btn-primary {
+    background-color: var(--nav-hover-accent);
+    border-color: var(--nav-hover-accent);
+    color: var(--color-primary);
+}
+
+[data-theme="orange"] .btn-primary:hover,
+[data-theme="orange"] .btn-primary:focus,
+[data-theme="orange"] .btn-primary.focus,
+[data-theme="orange"] .btn-primary:active,
+[data-theme="orange"] .btn-primary.active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-primary);
 }
 
