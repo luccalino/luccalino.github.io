@@ -612,13 +612,15 @@ img.sc {
     filter: var(--icon-filter-from-navy);
 }
 
-// "Unravel me" button: .btn-primary is a compile-time Sass mixin
+// .btn-primary buttons ("Unravel me", the publications/teaching/portfolio
+// "More" buttons, etc.): .btn-primary is a compile-time Sass mixin
 // (button-variant), not var-driven, so it can't retheme itself - override
-// its computed colors directly here instead.
+// its computed colors directly here instead. Blue/navy background with
+// orange text in the orange theme.
 [data-theme="orange"] .btn-primary {
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-primary);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-accent);
 }
 
 [data-theme="orange"] .btn-primary:hover,
@@ -626,8 +628,8 @@ img.sc {
 [data-theme="orange"] .btn-primary.focus,
 [data-theme="orange"] .btn-primary:active,
 [data-theme="orange"] .btn-primary.active {
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-primary);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-accent);
 }
 
