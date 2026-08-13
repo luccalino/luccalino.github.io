@@ -37,9 +37,94 @@
                 <li>
                     <a class="page-scroll" href="#contact">Contact</a>
                 </li>
+                <li id="theme-toggle-item">
+                    <button id="theme-toggle" type="button" aria-label="Switch color theme">
+                        <span class="theme-toggle-dot" aria-hidden="true">&#9679;</span>
+                        <span class="theme-toggle-label">Classic</span>
+                    </button>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
 </nav>
+
+<style>
+    /* Sits as the last nav item so it always has its own reserved space -
+       inherits the navbar's own fixed-top/collapse behavior for free,
+       instead of floating independently and risking overlap with it. */
+    #theme-toggle-item {
+        display: flex;
+        align-items: center;
+    }
+    #theme-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 15px 0 15px 15px;
+        padding: 5px 14px;
+        border-radius: 300px;
+        border: 1.5px solid var(--color-primary);
+        background: transparent;
+        color: var(--color-primary);
+        font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        cursor: pointer;
+        -webkit-transition: all .25s;
+        transition: all .25s;
+    }
+    #theme-toggle:hover,
+    #theme-toggle:focus {
+        background: var(--color-primary);
+        color: white;
+        outline: none;
+    }
+    #theme-toggle .theme-toggle-dot {
+        font-size: 9px;
+        position: relative;
+        top: -1px;
+    }
+    @media (max-width: 767px) {
+        #theme-toggle-item {
+            padding: 0 15px;
+        }
+        #theme-toggle {
+            margin: 8px 0;
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        var STORAGE_KEY = 'laz-theme';
+        var btn = document.getElementById('theme-toggle');
+        var labelEl = btn.querySelector('.theme-toggle-label');
+
+        function labelFor(theme) {
+            return theme === 'classic' ? 'Modern' : 'Classic';
+        }
+
+        function apply(theme) {
+            if (theme === 'classic') {
+                document.documentElement.setAttribute('data-theme', 'classic');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            labelEl.textContent = labelFor(theme);
+        }
+
+        btn.addEventListener('click', function () {
+            var isClassic = document.documentElement.getAttribute('data-theme') === 'classic';
+            var next = isClassic ? 'current' : 'classic';
+            try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+            apply(next);
+        });
+
+        // Sync the label with whatever head.html's early script already applied.
+        apply(document.documentElement.getAttribute('data-theme') === 'classic' ? 'classic' : 'current');
+    })();
+</script>
