@@ -291,6 +291,14 @@ header {
     text-align: center;
     color: white;
     overflow: hidden;
+    // Painted immediately, no animation - matches the artwork's own flat
+    // background fill exactly (see --header-bg-fill), so once the reveal
+    // below clips ::before down to a growing circle, the *background*
+    // reads as already fully there from the first frame (this color was
+    // already showing) and only the route lines - the only part of the
+    // image that contrasts with this fill - visibly appear as the circle
+    // sweeps outward.
+    background-color: var(--header-bg-fill);
     // The background art lives on a ::before layer (not directly on
     // `header`) so a per-theme CSS `filter` can retone the image without
     // also filtering the text sitting on top of it.
