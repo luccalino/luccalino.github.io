@@ -308,7 +308,11 @@ header {
     }
     .header-route {
         fill: none;
-        stroke: var(--color-accent);
+        // Same yellow as the nav links' hover color in the default theme
+        // (matches the original flattened PNG's own line color too), the
+        // orange accent in the orange theme - not --color-accent, which
+        // is navy in the default theme.
+        stroke: var(--nav-hover-accent);
         stroke-width: 1;
         stroke-opacity: 0.4;
         stroke-linecap: round;
