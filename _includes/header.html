@@ -3,13 +3,26 @@
   <script>
     (function () {
       // Draws every ride/run in data/routes.json as its own SVG path,
-      // staggered so the whole set finishes drawing ~8s after the data
-      // arrives (not a fixed timer from page load - see the header.html
-      // git history for why that distinction matters on a slow
-      // connection). Paths are colored via CSS (stroke: var(--color-accent)
-      // in _base.scss) so they - unlike the flattened PNG this replaced -
-      // recolor instantly on theme toggle with no separate filter needed.
-      var TOTAL_MS = 8000;
+      // staggered so the whole set finishes drawing TOTAL_MS after the
+      // data arrives (not a fixed timer from page load - see the
+      // header.html git history for why that distinction matters on a
+      // slow connection). Paths are colored via CSS (stroke:
+      // var(--nav-hover-accent) in _base.scss) so they - unlike the
+      // flattened PNG this replaced - recolor instantly on theme toggle
+      // with no separate filter needed.
+      // Deliberately does NOT check prefers-reduced-motion: the "Welcome,
+      // dear visitor" TypeIt animation right next to it doesn't either, so
+      // gating just this one animation on that setting made the header
+      // look completely static (no motion at all, not even a lesser
+      // amount) for anyone with it on - inconsistent with the rest of the
+      // page and confusing since nothing else here signals that it's
+      // intentional.
+      // TOTAL_MS matches the "Welcome, dear friend!" TypeIt sequence's own
+      // total run time (startDelay + every type/pause/delete/move step),
+      // measured empirically in a browser rather than hand-summed from its
+      // step list - TypeIt doesn't expose that total as a number anywhere
+      // to read it back from.
+      var TOTAL_MS = 12200;
       var PER_ROUTE_MS = 2500;
       var svg = document.getElementById('header-routes');
       var SVG_NS = 'http://www.w3.org/2000/svg';
@@ -20,8 +33,6 @@
         var ymin = ylim[0], ymax = ylim[1];
         var routes = routesDoc.routes;
         var n = routes.length;
-        var reduceMotion = window.matchMedia &&
-          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         var frag = document.createDocumentFragment();
         var paths = routes.map(function (route) {
@@ -37,8 +48,6 @@
           return path;
         });
         svg.appendChild(frag);
-
-        if (reduceMotion) return;
 
         paths.forEach(function (path, i) {
           var len = path.getTotalLength();
