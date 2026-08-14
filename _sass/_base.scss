@@ -306,12 +306,16 @@ header {
         // The route lines in the artwork all radiate outward from one hub
         // near the image's center, so revealing it through a circle that
         // grows from that same point reads as the network drawing itself
-        // outward, not just a generic fade. 150vmax comfortably clears the
-        // header's farthest corner in any aspect ratio (portrait phone or
-        // wide desktop) once fully grown.
+        // outward, not just a generic fade. Stays clipped shut here - the
+        // animation itself only starts once the `art-loaded` class below
+        // confirms the background image has actually finished downloading
+        // (see the script in header.html). A fixed CSS delay instead of
+        // that real load signal meant that on a slow connection the image
+        // could still be mid-download when the animation's clock ran out,
+        // so it would just appear fully revealed the instant it arrived -
+        // no visible motion at all.
         clip-path: circle(0 at 50% 50%);
         -webkit-clip-path: circle(0 at 50% 50%);
-        animation: header-art-reveal 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s forwards;
     }
     .header-content {
         position: relative;
@@ -359,20 +363,44 @@ header {
     }
 }
 
+// A bare `<percentage>` circle() radius resolves against
+// sqrt(width² + height²)/sqrt(2) - which works out to exactly the box's
+// own half-diagonal (the true distance to its farthest corner) times
+// sqrt(2), for any aspect ratio. So 100% already overshoots the actual
+// corner by ~41%; 115% is a small extra margin on top of that, not a
+// "cover it 115% of the way" figure. This matters for how the animation
+// *feels*, not just whether it finishes covering the box: an earlier
+// version targeted 150vmax, sized off the viewport rather than the
+// header element - on a tall narrow phone that's several times bigger
+// than the box actually needs, so the visible reveal was already
+// complete well under a second into the animation's declared 2.5s, with
+// the rest just growing an already-offscreen, invisible circle. Scoping
+// the target to the element itself makes the growth curve span the full
+// visible duration instead of finishing almost immediately.
 @keyframes header-art-reveal {
     to {
-        clip-path: circle(150vmax at 50% 50%);
-        -webkit-clip-path: circle(150vmax at 50% 50%);
+        clip-path: circle(115% at 50% 50%);
+        -webkit-clip-path: circle(115% at 50% 50%);
+    }
+}
+
+// Only plays for visitors with no motion-reduction preference, and only
+// once `art-loaded` (set from header.html once the background image's own
+// `load` event fires) confirms there's actually something loaded to
+// reveal.
+@media (prefers-reduced-motion: no-preference) {
+    header.art-loaded::before {
+        animation: header-art-reveal 2.5s ease-in forwards;
     }
 }
 
 // Respect the OS-level motion preference: show the artwork immediately,
-// fully formed, instead of animating it in.
+// fully formed, instead of animating it in. Not gated on `art-loaded` -
+// there's nothing to wait for since it's not animating either way.
 @media (prefers-reduced-motion: reduce) {
     header::before {
-        animation: none;
-        clip-path: circle(150vmax at 50% 50%);
-        -webkit-clip-path: circle(150vmax at 50% 50%);
+        clip-path: circle(115% at 50% 50%);
+        -webkit-clip-path: circle(115% at 50% 50%);
     }
 }
 

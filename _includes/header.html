@@ -1,4 +1,20 @@
 <header>
+  <script>
+    (function () {
+      // Starts the CSS reveal animation (see `header.art-loaded::before`
+      // in _base.scss) only once the actual background image has
+      // finished downloading, rather than on a fixed timer that could
+      // elapse before a slow connection has the image ready - see the
+      // comment on `header::before` in _base.scss for why that matters.
+      var art = new Image();
+      var reveal = function () {
+        document.querySelector('header').classList.add('art-loaded');
+      };
+      art.onload = reveal;
+      art.onerror = reveal;
+      art.src = '/img/avatar_new_one 2.png';
+    })();
+  </script>
   <div class="header-content">
     <div class="header-content-inner">
       <h1 id="myElement"></h1>
