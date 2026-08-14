@@ -1,3 +1,8 @@
 _site/
 .sass-cache/
 .DS_Store
+
+# Contains a live Strava API Client Secret (header.R) - this repo is
+# public (GitHub Pages source), so nothing in here should ever be
+# committed.
+script/
