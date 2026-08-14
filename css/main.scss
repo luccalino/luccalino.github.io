@@ -65,13 +65,11 @@ $theme-teaching: #d4c6b0;
     --color-medium: #87CEEB;
     --page-bg: #ffffff;
     --heading-font: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    --header-filter: none;
-    // The header artwork's own background fill, sampled directly from the
-    // source PNG (a near-perfectly flat #BFC6DA - same value as
-    // --color-about here by coincidence of the original design, not
-    // derived from it). Painted as `header`'s own background - see the
-    // reveal-animation comment on `header::before` in _base.scss for why
-    // it has to match this exactly.
+    // The live-drawn header routes' backdrop fill (see #header-routes /
+    // .header-route in _base.scss) - sampled from the original flattened
+    // header artwork's near-perfectly flat background (#BFC6DA - same
+    // value as --color-about here by coincidence of the original design,
+    // not derived from it), from back when the header was a raster image.
     --header-bg-fill: #BFC6DA;
     --icon-filter-from-black: none;
     --icon-filter-from-navy: none;
@@ -92,17 +90,17 @@ $theme-teaching: #d4c6b0;
     --color-medium: #87CEEB;
     --page-bg: #ffffff;
     --heading-font: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    // All three filters below are fit numerically against #D9A24B (the same
+    // Both filters below are fit numerically against #D9A24B (the same
     // --color-accent used for text), with saturate/contrast deliberately
     // capped well below their loss-minimizing extreme (5x+) - an aggressive
     // saturate blows up small per-pixel color variance (anti-aliased edges,
     // the .ico's alpha-blended pixels) into visibly wrong hues once the
     // browser downscales/rasterizes the image, even though it looks perfect
     // against the single sampled source color in isolation.
-    --header-filter: invert(0.152) sepia(0.126) hue-rotate(-1.5deg) saturate(3) brightness(0.581) contrast(4);
-    // --header-bg-fill run through that same --header-filter (measured by
-    // rendering the filter against #BFC6DA and sampling the result, not
-    // computed by hand - the filter chain isn't simple arithmetic).
+    // --header-bg-fill was measured by rendering the old header-art
+    // filter (now removed - the header is a live SVG, not a filtered
+    // raster) against #BFC6DA and sampling the result, not computed by
+    // hand - the filter chain wasn't simple arithmetic.
     --header-bg-fill: #1E2651;
     --icon-filter-from-black: invert(0.351) sepia(0.86) hue-rotate(-2.2deg) saturate(2.141) brightness(1.471) contrast(1.396);
     --icon-filter-from-navy: invert(0.739) sepia(0.994) hue-rotate(-3.9deg) saturate(2.182) brightness(0.792) contrast(1.203);
