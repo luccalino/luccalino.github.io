@@ -12,6 +12,26 @@
       })();
     </script>
 
+    <!-- Mobile browsers resize their own address/toolbar chrome without
+         firing anything CSS `dvh`/`lvh` can react to in time on first
+         paint, so the hero header (see `header` in _base.scss) can end up
+         a few px short of the real visible height and let the section
+         below peek in before the first scroll. `--vh` holds the actual
+         measured pixel height instead of a guessed unit, and the header
+         prefers it. Runs before first paint (like the theme script above)
+         so there's no flash of the wrong height either. -->
+    <script>
+      (function () {
+        function setVh() {
+          document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+        }
+        setVh();
+        window.addEventListener('resize', setVh);
+        window.addEventListener('orientationchange', setVh);
+        window.addEventListener('pageshow', setVh);
+      })();
+    </script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -198,7 +198,11 @@ aside {
     }
     @media (min-width: 768px) {
         background-color: transparent;
-        border-color: rgba(white, .3);
+        // Was a fixed rgba(white,.3)/rgba($theme-dark,.5) - neither one
+        // theme-aware, so the bar under the nav read as a washed-out white
+        // no matter which theme was active. Themed to match the mobile
+        // border fixed above.
+        border-color: var(--color-accent);
         .navbar-header .navbar-brand {
             color: var(--color-accent); //white; //rgba(white, .7);
             &:hover,
@@ -215,7 +219,7 @@ aside {
         }
         &.affix {
             background-color: var(--nav-affix-bg);
-            border-color: rgba($theme-dark, .5);
+            border-color: var(--color-accent);
             .navbar-header .navbar-brand {
                 color: var(--color-primary);
                 font-size: 14px;
@@ -272,13 +276,16 @@ header {
     // `dvh` tracks the real visible area as mobile browser chrome
     // (address bar) shows/hides - falls back to the `vh` line above on
     // browsers that don't support it. `lvh` (the viewport size with
-    // chrome fully hidden - the largest it ever gets) goes last so the
+    // chrome fully hidden - the largest it ever gets) goes next so the
     // header is always at least as tall as the visible area in every
     // chrome state, even right at page load before the browser has
-    // settled on one: a tiny bit of overscroll beneath the fold, never a
-    // sliver of the next section peeking in above it.
+    // settled on one. `--vh`, set from `window.innerHeight` in head.html,
+    // goes last and wins whenever JS ran - it's the browser's actual
+    // measured pixel height rather than a unit some mobile browsers get
+    // wrong on first paint, so it's the most reliable of the three.
     min-height: 100dvh;
     min-height: 100lvh;
+    min-height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     text-align: center;
