@@ -303,6 +303,15 @@ header {
         background-image: url('../img/avatar_new_one 2.png');
         filter: var(--header-filter);
         z-index: 0;
+        // The route lines in the artwork all radiate outward from one hub
+        // near the image's center, so revealing it through a circle that
+        // grows from that same point reads as the network drawing itself
+        // outward, not just a generic fade. 150vmax comfortably clears the
+        // header's farthest corner in any aspect ratio (portrait phone or
+        // wide desktop) once fully grown.
+        clip-path: circle(0 at 50% 50%);
+        -webkit-clip-path: circle(0 at 50% 50%);
+        animation: header-art-reveal 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s forwards;
     }
     .header-content {
         position: relative;
@@ -347,6 +356,23 @@ header {
                 }
             }
         }
+    }
+}
+
+@keyframes header-art-reveal {
+    to {
+        clip-path: circle(150vmax at 50% 50%);
+        -webkit-clip-path: circle(150vmax at 50% 50%);
+    }
+}
+
+// Respect the OS-level motion preference: show the artwork immediately,
+// fully formed, instead of animating it in.
+@media (prefers-reduced-motion: reduce) {
+    header::before {
+        animation: none;
+        clip-path: circle(150vmax at 50% 50%);
+        -webkit-clip-path: circle(150vmax at 50% 50%);
     }
 }
 
