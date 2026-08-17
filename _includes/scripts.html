@@ -14,3 +14,28 @@
 
 <!-- Analytics is loaded once via GA4 (gtag.js) in head.html -->
 
+<!-- Section headings (Publications, Projects, Software, Data, Teaching,
+     About, Contact) type themselves out with the same TypeIt cursor as the
+     "Welcome, dear visitor" header line - but straight through, once, with
+     no delete/retype loop. Each heading keeps its plain text server-side
+     (so it reads fine with JS off); this only blanks it and re-types it via
+     TypeIt's own waitUntilVisible gate, which fires the first time the
+     element crosses ~50% into the viewport, i.e. the moment the visitor
+     actually lands on that section - not on page load. -->
+<script>
+  (function () {
+    if (typeof TypeIt === 'undefined') return;
+    document.querySelectorAll('.type-target').forEach(function (el) {
+      var text = el.textContent;
+      el.textContent = '';
+      new TypeIt(el, {
+        strings: text,
+        speed: 100,
+        cursor: true,
+        cursorSpeed: 800,
+        waitUntilVisible: true,
+      }).go();
+    });
+  })();
+</script>
+
