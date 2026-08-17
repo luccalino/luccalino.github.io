@@ -323,7 +323,11 @@ header {
         z-index: 1;
         text-align: center;
         padding: 150px 15px 150px; //100px 15px 100px;
-        margin-top: 3cm;
+        // margin-top is set inline by the script in header.html, which
+        // measures where the route lines' hub actually lands on screen and
+        // positions the greeting just below it - a fixed cm value here
+        // can't track that, since the hub's on-screen position depends on
+        // viewport aspect ratio (see header.html for the math).
         width: 100%;
         .header-content-inner {
             h1 {

@@ -61,7 +61,74 @@
         });
       }
 
-      fetch('/data/routes.json').then(function (r) { return r.json(); }).then(draw);
+      // Finds the point most of the routes share as a start/end (rounded to
+      // ~100m) - i.e. the hub they visually radiate from - so the greeting
+      // below can be positioned relative to it rather than to a guessed cm
+      // value that only happens to look right on one screen size.
+      function findHub(routesDoc) {
+        var counts = {};
+        var best = null, bestCount = 0;
+        routesDoc.routes.forEach(function (route) {
+          [route[0], route[route.length - 1]].forEach(function (pt) {
+            var key = pt[0].toFixed(3) + ',' + pt[1].toFixed(3);
+            var count = (counts[key] || 0) + 1;
+            counts[key] = count;
+            if (count > bestCount) {
+              bestCount = count;
+              best = pt;
+            }
+          });
+        });
+        return best;
+      }
+
+      var GAP_PX = 24;
+      var header = document.querySelector('header');
+      var content = document.querySelector('.header-content');
+
+      // Places the greeting (.header-content) so its top edge sits GAP_PX
+      // below the hub's actual on-screen position. .header-content is
+      // still vertically centered by the header's `align-items: center`
+      // (see _base.scss) - centering a box with a top margin shifts its
+      // visible top down by only half of that margin, so the margin has to
+      // be solved for rather than set directly to the desired offset.
+      function positionGreeting(routesDoc) {
+        if (!header || !content) return;
+        var hub = findHub(routesDoc);
+        if (!hub) return;
+        var xlim = routesDoc.xlim, ylim = routesDoc.ylim;
+        var hx = (hub[0] - xlim[0]) / (xlim[1] - xlim[0]) * 1000;
+        var hy = (ylim[1] - hub[1]) / (ylim[1] - ylim[0]) * 1000;
+
+        var point = svg.createSVGPoint();
+        point.x = hx;
+        point.y = hy;
+        var ctm = svg.getScreenCTM();
+        if (!ctm) return;
+        var screenPoint = point.matrixTransform(ctm);
+
+        content.style.marginTop = '0px';
+        var headerRect = header.getBoundingClientRect();
+        var contentRect = content.getBoundingClientRect();
+        var hubY = screenPoint.y - headerRect.top;
+        var desiredTop = hubY + GAP_PX;
+        var margin = 2 * desiredTop - (headerRect.height - contentRect.height);
+        content.style.marginTop = Math.max(0, margin) + 'px';
+      }
+
+      fetch('/data/routes.json').then(function (r) { return r.json(); }).then(function (routesDoc) {
+        draw(routesDoc);
+        positionGreeting(routesDoc);
+
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () { positionGreeting(routesDoc); }, 150);
+        });
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () { positionGreeting(routesDoc); });
+        }
+      });
     })();
   </script>
   <div class="header-content">
