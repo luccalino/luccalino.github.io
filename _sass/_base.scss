@@ -401,6 +401,12 @@ header {
     display: block;
     max-width: 650px;
     margin: 0 auto;
+    overflow: hidden;
+    img.img-responsive {
+        width: 100%;
+        aspect-ratio: 1.858 / 1;
+        object-fit: cover;
+    }
     .portfolio-box-caption {
         color: var(--color-accent); //white;
         opacity: 0;
