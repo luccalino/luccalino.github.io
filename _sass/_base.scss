@@ -676,6 +676,17 @@ img.sc {
     filter: var(--icon-filter-from-navy);
 }
 
+// White-on-transparent assets (WFSC logo in about.html): render them black
+// first so they read on the light --color-about, then apply the same
+// black-to-accent recolor as .recolor-black under the orange theme.
+.recolor-white {
+    filter: brightness(0);
+}
+
+[data-theme="orange"] .recolor-white {
+    filter: brightness(0) var(--icon-filter-from-black);
+}
+
 // .btn-primary buttons ("Unravel me", the publications/teaching/portfolio
 // "More" buttons, etc.): .btn-primary is a compile-time Sass mixin
 // (button-variant), not var-driven, so it can't retheme itself - override
